@@ -104,7 +104,7 @@ if direction == Directions.Left {
     // ...
 }
 
-//如果想同时支持两个方向，则可以如上处理：
+//同时支持两个方向
 let leftUp: Directions = [.Left, .Up]
 let leftUp1 :Directions = .LeftUp
 if leftUp.contains(.Left) && leftUp.contains(.Up) {
