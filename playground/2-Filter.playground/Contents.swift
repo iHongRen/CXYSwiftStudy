@@ -2,7 +2,7 @@
 
 import UIKit
 
-//1. 用Filter函数筛选出String数组中后缀是.swift的文件
+//1.用Filter函数筛选出String数组中后缀是.swift的文件
 let filesNeedToFilter = ["ViewController.swift","HelloWorld.c","Web.java","Person.swift","Main.c"]
 
 //输出["ViewController.swift","Person.swift"]
@@ -12,14 +12,14 @@ let filtered = filesNeedToFilter.filter{
 print(filtered)
 
 
-//2. 选出大于30的
+//2.选出大于30的
 let moneyArray = [10,40,60]
 let filetedArray = moneyArray.filter{
     $0 > 30
 }
 print(filetedArray)
 
-//3. 用函数实现filter 功能
+//3.用函数实现filter 功能
 func getFilesByCondition(files:[String],f:String->Bool)->[String] {
     var result = [String]()
     for file in files{
@@ -35,7 +35,7 @@ let filteredC = getFilesByCondition(filesNeedToFilter) {
     $0.hasSuffix(".c")//返回["HelloWorld.c", "Main.c"]
 }
 
-//4. 自定义filter
+//4.自定义filter
 func myFilter<T>(xs:[T],check:T->Bool)->[T] {
     var result = [T]()
     for x in xs{

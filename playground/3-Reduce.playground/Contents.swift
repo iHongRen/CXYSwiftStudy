@@ -4,13 +4,13 @@ import UIKit
 
 
 
-//1. 求和,乘积
+//1.求和,乘积
 let sumArray = [1,2,3,4]
 let sum = sumArray.reduce(0, combine: +)
 let multiply = sumArray.reduce(1, combine: *)
 
 
-//2. 用函数实现 +
+//2.用函数实现 +
 func sum(xs:[Int])->Int {
     var result:Int = 0
     for x in xs{
@@ -22,7 +22,7 @@ let sum1 = sum(sumArray)//print 10
 
 
 
-//3. 自定义reduce
+//3.自定义reduce
 let newArray = ["hello","world","say","By","optional"]
 
 func myReduce<T,U>(arr:[T],initialValue:U,combine:(U,T)->U)->U {
@@ -38,19 +38,19 @@ let s = myReduce(newArray, initialValue: "整合后的字符串为："){
 }
 
 
-//4. 对sum函数进行改写，使用前面自定义的myReduce函数封装
+//4.对sum函数进行改写，使用前面自定义的myReduce函数封装
 func sumUsingReduce(xs:[Int])->Int {
     return myReduce(xs,initialValue: 0,combine: +)
 }
 
 
-//5. 用reduce来改写map函数
+//5.用reduce来改写map函数
 func mapUsingReduce<T,U>(xs:[T],f:T->U)->[U] {
     return xs.reduce([]){result,x in result + [f(x)]}//使用了系统API 尝试用自定义的
 }
 
 
-//6. 用myReduce来改写map函数
+//6.用myReduce来改写map函数
 func mapUsingMyReduce<T,U>(xs:[T],f:T->U)->[U] {
     return myReduce(xs, initialValue: []) {
         result , x in
@@ -62,7 +62,7 @@ let testMap = mapUsingMyReduce(sumArray){
 }
 
 
-//7. 用reduce来改写filter函数
+//7.用reduce来改写filter函数
 func filterUsingReduce<T>(xs:[T],check:T->Bool)->[T] {
     return xs.reduce([]){
         result,x in
@@ -71,7 +71,7 @@ func filterUsingReduce<T>(xs:[T],check:T->Bool)->[T] {
 }
 
 
-//8. 用myReduce来改写filter函数
+//8.用myReduce来改写filter函数
 func filterUsingMyReduce<T>(xs:[T],check:T->Bool)->[T] {
     return myReduce(xs, initialValue: []) {
         result,x in

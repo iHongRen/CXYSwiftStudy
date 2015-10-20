@@ -1,35 +1,35 @@
-//: #Map
+//: ## Map
 
 import UIKit
 
 
 let arr = [1,2,3]
 
-//1. 转字符串1
+//1.转字符串1
 let str1 = arr.map{String($0)}
 print(str1)
 
 
-//2. 转字符串2
+//2.转字符串2
 let str2 = arr.map{"\($0)"}
 print(str2)
 
 
-//3. 2倍
+//3.2倍
 let doubled = arr.map{
     $0 * 2
 }
 print(doubled)
 
 
-//4. 字典map，返回数组
+//4.字典map，返回数组
 let dict = ["key1": "value1","key2": "value2"]
 print(dict)
 let ret = dict.map({(key,value) in (key,value.uppercaseString)})
 print(ret)
 
 
-//5. 用一个Int类型数组存储商品金额，想把每个金额后面添加一个字符“￥”，把数组转成字符串数组。如：[10,20,30,40] -> ["10￥","20￥","30￥","40￥"]
+//5.用一个Int类型数组存储商品金额，想把每个金额后面添加一个字符“￥”，把数组转成字符串数组。如：[10,20,30,40] -> ["10￥","20￥","30￥","40￥"]
 let moneyArray = [10,20,30,40]
 let stringsArray = moneyArray.map{
     "\($0)￥"
@@ -54,7 +54,7 @@ let strings = numbers.map{
 print(strings)
 
 
-//6. 函数对一个Int类型数组的元素进行2倍放大
+//6.函数对一个Int类型数组的元素进行2倍放大
 func doubleArrayByTwo(xs:[Int])->[Int]{
     var result = [Int]()
     
@@ -69,7 +69,7 @@ print(doubleArray)
 
 
 
-//7. 函数对一个Int类型数组的元素进行f变换
+//7.函数对一个Int类型数组的元素进行f变换
 func handleIntArray(xs:[Int],f:Int->Int)->[Int]{
     var result = [Int]()
     
@@ -95,7 +95,7 @@ let handledArray1 = handleIntArray(arr){
 print(handledArray1)
 
 
-//8. bool
+//8.bool
 func handleBoolArray(xs:[Int],f:Int->Bool)->[Bool]{
     var result = [Bool]()
     for x in xs {
@@ -104,7 +104,7 @@ func handleBoolArray(xs:[Int],f:Int->Bool)->[Bool]{
     return result
 }
 
-//9. 泛型
+//9.泛型
 func genericComputeArray<U>(xs:[Int],f:Int->U)->[U]{
     var result = [U]()
     for x in xs {
@@ -113,7 +113,7 @@ func genericComputeArray<U>(xs:[Int],f:Int->U)->[U]{
     return result
 }
 
-//10. 自定义map
+//10.自定义map
 func myMap<T,U>(xs:[T],f:T->U)->[U]{
     var result = [U]()
     for x in xs{
@@ -128,7 +128,7 @@ print(myArr)
 //输出 [2,4,6]
 
 
-//11. optional map
+//11.optional map
 let num1: Int? = 3
 var result1: Int?
 if let realNum = num1 {

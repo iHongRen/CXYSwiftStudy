@@ -4,7 +4,7 @@
 import UIKit
 
 
-//1. 以下是指南针四个方向的一个例子
+//1.以下是指南针四个方向的一个例子
 enum CompassPoint {
     case North
     case South
@@ -26,14 +26,14 @@ case .West:
     print("W")
 }
 
-//2. 多个成员值可以出现在同一行上,用逗号隔开
+//2.多个成员值可以出现在同一行上,用逗号隔开
 enum Planet {
     case Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune
 }
 
 
 //:**关联值**
-//3. 定义两种商品条码的枚举
+//3.定义两种商品条码的枚举
 enum Barcode {
     case UPCA(Int,Int,Int,Int)
     case QRCode(String)
@@ -60,7 +60,7 @@ case let .QRCode(productCode):
 
 
 //:**原始值**
-//4. 这里是一个枚举成员存储 ASCII 码的例子
+//4.这里是一个枚举成员存储 ASCII 码的例子
 enum ASCIIControlCharacter: Character {
     case Tab = "\t"
     case LineFeed = "\n"
@@ -68,13 +68,13 @@ enum ASCIIControlCharacter: Character {
 }
 
 
-//5. 当使用整数作为原始值时,隐式赋值的值依次递增1。如果第一个值没有被赋初值,将会被自动置为0。
+//5.当使用整数作为原始值时,隐式赋值的值依次递增1。如果第一个值没有被赋初值,将会被自动置为0。
 enum Planet1: Int {
     case Mercury = 1, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune
 }
 
 
-//6. 当使用字符串作为枚举类型的初值时,每个枚举成员的隐式初值则为该成员的名称。
+//6.当使用字符串作为枚举类型的初值时,每个枚举成员的隐式初值则为该成员的名称。
 enum CompassPoint1: String {
     case North, South, East, West
 }
@@ -84,7 +84,7 @@ let sunsetDirection = CompassPoint1.West.rawValue // sunsetDirection 值为 "Wes
 //:### OptionSetType
 //在Swift中实现ObjC中的NS_OPTION不是通过enum，而是通过conform OptionSetType protocol的struct来实现的。
 
-//7. 定义一个表示方向的选项集合
+//7.定义一个表示方向的选项集合
 struct Directions: OptionSetType {
     var rawValue:Int
     
@@ -112,7 +112,10 @@ if leftUp.contains(.Left) && leftUp.contains(.Up) {
 }
 
 
-//8. [.CurveEaseIn, .CurveEaseInOut]  
+//8.[.CurveEaseIn, .CurveEaseInOut]  
 UIView.animateWithDuration(0.3, delay: 1.0, options: [.CurveEaseIn, .CurveEaseInOut], animations: { () -> Void in
     // ...
 }, completion: nil)
+
+
+
