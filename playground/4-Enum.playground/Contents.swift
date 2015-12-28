@@ -42,7 +42,7 @@ enum Barcode {
 var productBarcode = Barcode.UPCA(8, 85909, 51226, 3)
 productBarcode = .QRCode("ABC")
 
-//可以在 switch 的 case 分支代码中提取每个相关值作为一个常量(用 let 前缀)或者作为一个变 量(用 var 前缀)来使用
+//可以在 switch 的 case 分支代码中提取每个相关值作为一个常量(用 let 前缀)或者作为一个变量(用 var 前缀)来使用
 switch productBarcode {
 case .UPCA(let numberSystem, var manufacturer, let product, let check):
     print("UPC-A: \(numberSystem), \(manufacturer), \(product), \(check).")

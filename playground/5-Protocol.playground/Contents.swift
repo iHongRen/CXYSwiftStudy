@@ -94,7 +94,7 @@ class SomeClass: SomeInitProtocol {
 
 // 使用 required 修饰符可以保证:所有的遵循该协议的子类,同样能为构造器规定提供一个显式的实现或继承实 现。
 
-//2. 如果一个子类重写了父类的指定构造器,并且该构造器遵循了某个协议的规定,那么该构造器的实现需要被同时 标示 required 和 override 修饰符
+//2. 如果一个子类重写了父类的指定构造器,并且该构造器遵循了某个协议的规定,那么该构造器的实现需要被同时标示 required 和 override 修饰符
 protocol SomeSubProtocol {
     init()
 }
@@ -139,9 +139,11 @@ for _ in 1...5 {
 //: 委托(代理)模式
 
 //1. 下面的例子是两个基于骰子游戏的协议
-protocol DiceGame { var dice: Dice { get }
+protocol DiceGame {
+    var dice: Dice { get }
     func play()
 }
+
 protocol DiceGameDelegate {
     func gameDidStart(game: DiceGame)
     func game(game: DiceGame, didStartNewTurnWithDiceRoll diceRoll:Int)
@@ -170,15 +172,19 @@ class SnakesAndLadders: DiceGame {
             case finalSquare:
                 break gameLoop
             case let newSquare where newSquare > finalSquare:
-                continue gameLoop default:
-                    square += diceRoll
-                    square += board[square]
-            } }
-        delegate?.gameDidEnd(self) }
+                continue gameLoop
+            default:
+                square += diceRoll
+                square += board[square]
+            }
+        }
+        delegate?.gameDidEnd(self)
+    }
 }
 
 //DiceGameTracker 遵循了 DiceGameDelegate 协议
-class DiceGameTracker: DiceGameDelegate { var numberOfTurns = 0
+class DiceGameTracker: DiceGameDelegate {
+    var numberOfTurns = 0
     func gameDidStart(game: DiceGame) {
         numberOfTurns = 0
         if game is SnakesAndLadders {
@@ -206,7 +212,7 @@ protocol TextRepresentable {
     func asText() -> String
 }
 
-//通过扩展使得 ￼ 类型遵循了一个新的协议,这和 ￼ 类型在定义的时候声明为遵循 协议的效果相同
+//通过扩展使得类型遵循了一个新的协议,这和类型在定义的时候声明为遵循协议的效果相同
 extension Dice: TextRepresentable {
     func asText() -> String {
         return "A \(sides)-sided dice"
@@ -232,7 +238,7 @@ print(game.asText())
 
 //: 通过扩展补充协议声明
 
-//1. 当一个类型已经实现了协议中的所有要求,却没有声明为遵循该协议时,可以通过扩展(空的扩展体)来补充协议声 明:
+//1. 当一个类型已经实现了协议中的所有要求,却没有声明为遵循该协议时,可以通过扩展(空的扩展体)来补充协议声明:
 struct Hamster {
     var name: String
     func asText() -> String {
@@ -265,7 +271,7 @@ for thing in things {
 
 //: 协议的继承
 
-//1. 协议的继承语法与类的继承相 似,多个被继承的协议间用逗号分隔:
+//1. 协议的继承语法与类的继承相似,多个被继承的协议间用逗号分隔:
 protocol InheritingProtocol: SomeProtocol, AnotherProtocol {
     // 协议定义
 }
@@ -281,8 +287,10 @@ extension SnakesAndLadders: PrettyTextRepresentable {
     var output = asText() + ":\n"
     for index in 1...finalSquare {
         switch board[index] {
-        case let ladder where ladder > 0: output += "▲ "
-        case let snake where snake < 0: output += "▼ "
+        case let ladder where ladder > 0:
+            output += "▲ "
+        case let snake where snake < 0:
+            output += "▼ "
         default:
             output += "○ "
         }
@@ -384,7 +392,7 @@ for object in objects {
 
 /*
 注意
-可选协议只能在含有 @objc 前缀的协议中生效。且 @objc 的协议只能被 类 遵循 这个前缀表示协议将暴露给Objective-C代码,详情参见 Using Swift with Cocoa and Objective-C 。即使你 不打算和Objective-C有什么交互,如果你想要指明协议包含可选属性,那么还是要加上 @obj 前缀
+可选协议只能在含有 @objc 前缀的协议中生效。且 @objc 的协议只能被类遵循，这个前缀表示协议将暴露给Objective-C代码,详情参见 Using Swift with Cocoa and Objective-C 。即使你不打算和Objective-C有什么交互,如果你想要指明协议包含可选属性,那么还是要加上 @obj 前缀
 
 */
 
@@ -446,7 +454,8 @@ for _ in 1...5 {
 //1. 通过扩展协议,所有协议的遵循者,在不用任何修改的情况下,都自动得到了这个扩展所增加的方法。
 extension RandomNumberGenerator {
     func randomBool() -> Bool {
-    return random() > 0.5 }
+        return random() > 0.5
+    }
 }
 
 let generator1 = LinearCongruentialGenerator()

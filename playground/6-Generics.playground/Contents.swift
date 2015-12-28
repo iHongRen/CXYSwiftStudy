@@ -93,7 +93,7 @@ let fromTheTop = stackOfStrings.pop()
 //4.下面的例子扩展了泛型 Stack 类型,为其添加了一个名为 topItem 的只读计算属性,它将会返回当前栈顶端的元 素而不会将其从栈中移除。
 extension Stack {
     var topItem: T? {
-    return items.isEmpty ? nil : items[items.count - 1]
+        return items.isEmpty ? nil : items[items.count - 1]
     }
 }
 
@@ -267,13 +267,6 @@ if allItemsMatch(stackOfStrings1, anotherContainer: arrayOfStrings) {
 // 输出 "All items match."
 
 //即便栈和数组是不同的类型,但它们都遵循 Container 协 议,而且它们都包含同样的类型值。因此你可以调用 allItemsMatch(_:_:) 函数,用这两个容器作为它的参数。
-
-
-
-
-
-
-
 
 
 
