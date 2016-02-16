@@ -14,9 +14,9 @@ class Residence {
 //如果创建一个新的 Person 实例,因为它的 residence 属性是可空的, john 属性将初始化为 nil :
 let john = Person()
 
-//如果使用叹号(!)强制展开获得这个 john 的 residence 属性中的 numberOfRooms 值,会触发运行时错 误,因为这时没有可以展开的 residence :
+//如果使用叹号(!)强制展开获得这个 john 的 residence 属性中的 numberOfRooms 值,会触发运行时错误,因为这时没有可以展开的 residence :
 //let roomCount = john.residence!.numberOfRooms
-// this triggers a runtime error
+//this triggers a runtime error
 
 //可空链式调用提供了另一种访问 numberOfRooms 的方法,使用问号(?)来代替原来叹号(!)的位置:
 if let roomCount = john.residence?.numberOfRooms {

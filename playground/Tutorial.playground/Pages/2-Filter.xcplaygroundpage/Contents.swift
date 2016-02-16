@@ -6,7 +6,7 @@ import UIKit
 let filesNeedToFilter = ["ViewController.swift","HelloWorld.c","Web.java","Person.swift","Main.c"]
 
 //输出["ViewController.swift","Person.swift"]
-let filtered = filesNeedToFilter.filter{
+let filtered = filesNeedToFilter.filter {
     $0.hasSuffix(".swift")//注意suffix是后缀的意思
 }
 print(filtered)
@@ -14,7 +14,7 @@ print(filtered)
 
 //2.选出大于30的
 let moneyArray = [10,40,60]
-let filetedArray = moneyArray.filter{
+let filetedArray = moneyArray.filter {
     $0 > 30
 }
 print(filetedArray)

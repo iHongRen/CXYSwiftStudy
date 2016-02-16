@@ -117,7 +117,6 @@ john1 = nil
 // //: ![image](6.png)
 // image = UIImage(named: "6")
 [#Image(imageLiteral: "6.png")#].imageWithRenderingMode(.Automatic)
-
 //由于再也没有指向 Apartment 实例的强引用,该实例也会被销毁:
 unit4A1 = nil
 // prints "Apartment #731 is being deinitialized"

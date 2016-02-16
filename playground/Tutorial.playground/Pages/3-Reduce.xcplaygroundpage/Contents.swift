@@ -64,7 +64,7 @@ let testMap = mapUsingMyReduce(sumArray){
 
 //7.用reduce来改写filter函数
 func filterUsingReduce<T>(xs:[T],check:T->Bool)->[T] {
-    return xs.reduce([]){
+    return xs.reduce([]) {
         result,x in
         return check(x) ? result + [x] : result //使用了系统API 尝试用自定义的
     }
