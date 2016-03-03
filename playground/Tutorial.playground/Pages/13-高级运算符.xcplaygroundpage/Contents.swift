@@ -243,5 +243,3 @@ let plusMinusVector = firstVector +- secondVector
 // plusMinusVector 是一个 Vector2D 类型,并且它的值为 (4.0, -2.0)
 
 
-
-

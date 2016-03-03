@@ -189,9 +189,3 @@ if let beginsWithThe = john1.residence?.address?.buildingIdentifier()?.hasPrefix
 //注意: 在上面的例子中在,在方法的圆括号后面加上问号是因为 buildingIdentifier() 的返回值是可空值,而不 是方法本身是可空的。
 
 
-
-
-
-
-
-
