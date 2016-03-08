@@ -1,7 +1,9 @@
 //: Optional（可选类型）
-
+//Some<Wrapped>封装关联值，解包就是从enum里取出关联值。
 import Foundation
 import UIKit
+
+
 
 //声明方式
 var opt1: Optional<Int> //显式声明
@@ -9,6 +11,11 @@ var opt2: Int?          //与opt1 等价, 语法糖
 
 var opt3: ImplicitlyUnwrappedOptional<Int> //隐式声明,自动解包
 var opt4: Int!        //与opt3 等价
+
+//Swift中 nil不是空指针，是一个确定的值，表示值缺失
+
+//PS:  用?或!修饰的类型所产生的对象是Optional对象，不是你声明的那个泛型类型。
+
 
 //解包方法
 let op = Optional.Some(5) //直接赋值
@@ -56,5 +63,4 @@ opt.map {
 opt.flatMap {
     print("6.flatmap方法 \($0)")
 }
-
 

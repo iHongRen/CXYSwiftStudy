@@ -33,6 +33,20 @@ enum Planet {
 
 
 //:**关联值**
+//形状
+enum Shape {
+    case Rectangle(w: Int,h:Int)
+    case Round(r: Int)
+}
+var round = Shape.Round(r: 5)
+
+//使用case-let语句提取关联值作为一个常量/变量
+switch round {
+case .Round(let r):
+    print("r=\(r)")
+case let .Rectangle(w, h):
+    print("w=\(w),h=\(h)")
+}
 
 //定义两种商品条码的枚举
 enum Barcode {
@@ -40,11 +54,11 @@ enum Barcode {
     case QRCode(String)
 }
 
-var productBarcode = Barcode.UPCA(8, 85909, 51226, 3)
-productBarcode = .QRCode("ABC")
+var barcode = Barcode.UPCA(8, 2, 1, 3)
+barcode = .QRCode("ABC")
 
 //可以在 switch 的 case 分支代码中提取每个相关值作为一个常量(用 let 前缀)或者作为一个变量(用 var 前缀)来使用
-switch productBarcode {
+switch barcode {
 case .UPCA(let numberSystem, var manufacturer, let product, let check):
     print("UPC-A: \(numberSystem), \(manufacturer), \(product), \(check).")
 case .QRCode(let productCode):
@@ -52,7 +66,7 @@ case .QRCode(let productCode):
 }
 
 //如果一个枚举成员的所有相关值被提取为常量,或者它们全部被提取为变量,为了简洁,你可以只放置一个 var 或者 let 标注在成员名称前
-switch productBarcode {
+switch barcode {
 case let .UPCA(numberSystem, manufacturer, product, check):
     print("UPC-A: \(numberSystem), \(manufacturer), \(product), \(check).")
 case let .QRCode(productCode):
@@ -61,6 +75,16 @@ case let .QRCode(productCode):
 
 
 //:**原始值**
+
+enum Role: Int {
+    case Normal  = 0
+    case Admin   = 1
+    case Creator = 2
+}
+
+//获取原始值 使用rawValue
+let rawValue = Role.Admin.rawValue
+
 //这里是一个枚举成员存储 ASCII 码的例子
 enum ASCIIControlCharacter: String {
     case Tab = "\t"
@@ -73,7 +97,6 @@ enum ASCIIControlCharacter: String {
 enum Planet1: Int {
     case Mercury = 1, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune
 }
-
 
 //当使用字符串作为枚举类型的初值时,每个枚举成员的隐式初值则为该成员的名称。
 enum CompassPoint1: String {
@@ -231,6 +254,7 @@ ovenLight.next()
 //在Swift中实现ObjC中的NS_OPTION不是通过enum，而是通过conform OptionSetType protocol的struct来实现的。
 
 //7.定义一个表示方向的选项集合
+//Swift版
 struct Directions: OptionSetType {
     var rawValue:Int
     

@@ -142,3 +142,4 @@ let result2 = num2.map {
     $0 * 2
 }
 // result2 为 {Some 6}
+

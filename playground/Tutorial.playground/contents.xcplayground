@@ -16,5 +16,7 @@
         <page name='13-高级运算符'/>
         <page name='14-可选类型(Optional)'/>
         <page name='15-闭包(Closures)'/>
+        <page name='16-数组'/>
+        <page name='17-数据类型'/>
     </pages>
 </playground>
