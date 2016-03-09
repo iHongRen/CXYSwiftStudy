@@ -258,10 +258,10 @@ ovenLight.next()
 struct Directions: OptionSetType {
     var rawValue:Int
     
-    static let Up: Directions = Directions(rawValue: 1 << 0)
-    static let Down: Directions = Directions(rawValue: 1 << 1)
-    static let Left: Directions = Directions(rawValue: 1 << 2)
-    static let Right: Directions = Directions(rawValue: 1 << 3)
+    static let Up = Directions(rawValue: 1 << 0)
+    static let Down = Directions(rawValue: 1 << 1)
+    static let Left = Directions(rawValue: 1 << 2)
+    static let Right = Directions(rawValue: 1 << 3)
     
     // ...
     static let LeftUp: Directions = [.Left, .Up]

@@ -18,5 +18,6 @@
         <page name='15-闭包(Closures)'/>
         <page name='16-数组'/>
         <page name='17-数据类型'/>
+        <page name='18-函数'/>
     </pages>
 </playground>
