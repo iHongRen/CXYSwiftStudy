@@ -22,6 +22,7 @@ let op = Optional.Some(5) //直接赋值
 let op1 = Optional(5) //构造方法
 let opt: Int? = 5   //与上面等价
 
+
 //1.强制解包
 if opt != nil {
     print("1.强制解包 \(opt!)")

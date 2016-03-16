@@ -32,7 +32,7 @@ let aMarathon = 42.km + 195.m
 print("A marathon is \(aMarathon) meters long")
 
 
-//注意: 扩展可以添加新的计算属性,但是不可以添加存储属性,也不可以向已有属性添加属性观测器(property obser vers)。
+//注意: 扩展可以添加新的计算属性,但是不可以添加存储属性,也不可以向已有属性添加属性观测器(property observers)。
 
 
 //: 构造器(Initializers)
