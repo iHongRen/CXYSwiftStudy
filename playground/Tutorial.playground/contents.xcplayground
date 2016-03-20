@@ -9,7 +9,7 @@
         <page name='6-泛型(Generics)'/>
         <page name='7-类型转换'/>
         <page name='8-下标(Subscripts)'/>
-        <page name='扩展(Extensions)'/>
+        <page name='9-扩展(Extensions)'/>
         <page name='10-错误处理'/>
         <page name='11-可空链式调用'/>
         <page name='12-自动引用计数'/>
@@ -20,6 +20,8 @@
         <page name='17-数据类型'/>
         <page name='18-函数(Functions)'/>
         <page name='19-类(Classes)和结构体(Struct)'/>
-        <page name='20-属性 (Properties)'/>
+        <page name='20-属性(Properties)'/>
+        <page name='21-构造过程(Initialization)'/>
+        <page name='22-析构过程(Deinitialization)'/>
     </pages>
 </playground>
