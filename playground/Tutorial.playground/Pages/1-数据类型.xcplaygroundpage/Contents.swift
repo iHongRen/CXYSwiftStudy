@@ -46,7 +46,7 @@ http404Error.statusMessage = "找不到服务器"
 print(http404Error)   //打印： (404,"找不到服务器")
 
 
-//比较元组
+//比较元组   ps:元组元素个数不能大于6个
 var http403Error = (statusCode:403, statusMessage:"Forbidden")
 if http403Error == http404Error {
     print("==");

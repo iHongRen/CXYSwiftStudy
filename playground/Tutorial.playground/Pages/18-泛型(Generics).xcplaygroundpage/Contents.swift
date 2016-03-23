@@ -174,7 +174,7 @@ let stringIndex = findIndex(["Mike", "Malcolm", "Andrea"], "Andrea")
 //: 关联类型(Associated Types)
 //7.这里是一个 Container 协议的例子,定义了一个 ItemType 关联类型:
 protocol Container {
-    typealias ItemType
+    associatedtype ItemType
     mutating func append(item: ItemType)
     var count: Int { get }
     subscript(i: Int) -> ItemType { get }
