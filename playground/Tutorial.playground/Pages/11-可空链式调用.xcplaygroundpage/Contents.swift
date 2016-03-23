@@ -141,7 +141,7 @@ if let firstRoomName = john1.residence?[0].name {
 //3.如果下标返回可空类型值,比如Swift中 Dictionary 的 key 下标。可以在下标的闭合括号后面放一个问号来链接下标的可空返回值:
 var testScores = ["Dave":[86,82,84],"Bev":[79,94,81]]
 testScores["Dave"]?[0] = 91
-testScores["Bev"]?[0]++
+testScores["Bev"]?[0] += 1
 testScores["Brian"]?[0] = 72
 // the "Dave" array is now [91, 82, 84] and the "Bev" array is now [80, 94, 81]
 //key“Brian”在 字典中不存在,所以第三个调用失败。

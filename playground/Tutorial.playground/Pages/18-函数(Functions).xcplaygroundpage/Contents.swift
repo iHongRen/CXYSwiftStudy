@@ -66,9 +66,10 @@ getSum(2,numbers: 10,20,30,40)
 //函数参数默认是常量。
 //通过在参数名前加关键字 var 来定义变量参数:
 
-func myWord(var word: String) -> String {
-    word = word + "。"
-    return word
+func myWord(word: String) -> String {
+    var w = word;
+    w += "。"
+    return w
 }
 myWord("hi")
 //注意: 对变量参数所进行的修改在函数调用结束后便消失了,并且对于函数体外是不可见的。变量参数仅仅存 在于函数调用的生命周期中。

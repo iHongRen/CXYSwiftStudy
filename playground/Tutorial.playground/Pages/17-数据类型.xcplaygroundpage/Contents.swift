@@ -46,6 +46,14 @@ http404Error.statusMessage = "找不到服务器"
 print(http404Error)   //打印： (404,"找不到服务器")
 
 
+//比较元组
+var http403Error = (statusCode:403, statusMessage:"Forbidden")
+if http403Error == http404Error {
+    print("==");
+} else {
+    print("!=");
+}
+
 //元组使用场景
 let myArr = [10,20,30,40]
 

@@ -194,7 +194,7 @@ class DiceGameTracker: DiceGameDelegate {
     }
     
     func game(game: DiceGame, didStartNewTurnWithDiceRoll diceRoll: Int) {
-        ++numberOfTurns
+        numberOfTurns += 1
         print("Rolled a \(diceRoll)")
     }
     

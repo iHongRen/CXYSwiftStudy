@@ -96,11 +96,12 @@ someInt.square()
 
 //3.这个例子向Swift内建类型 Int 添加了一个整型下标。该下标 [n] 返回十进制数字从右向左数的第n个数字
 extension Int {
-    subscript(var digitIndex: Int)->Int {
+    subscript(digitIndex: Int)->Int {
         var decimalBase = 1
-        while digitIndex > 0 {
+        var index = digitIndex
+        while index > 0 {
             decimalBase *= 10
-            --digitIndex
+            index -= 1
         }
         print(decimalBase)
         return (self/decimalBase)%10
