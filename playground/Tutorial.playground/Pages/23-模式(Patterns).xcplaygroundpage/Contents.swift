@@ -86,7 +86,6 @@ case let .Rectangle(w, h):
 }
 
 
-
 //: 6.可选模式(Optional Pattern)
 //可选模式与封装在一个 Optional(T) 或者一个 ExplicitlyUnwrappedOptional(T) 枚举中的 Some(T) 用例相匹配。
 let someOptional: Int? = 42
@@ -139,12 +138,6 @@ switch 5 {
 case 0...10: print("In range 0-10")
 default: print("Not in range 0-10")
 }
-
-
-
-
-
-
 
 
 
