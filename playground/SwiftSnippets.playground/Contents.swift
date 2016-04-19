@@ -36,3 +36,45 @@ class MySingleton {
     static let sharedInstance = MySingleton()
     private init() {} //保证编译器在某个类尝试使用()来初始化MySingleton时，抛出错误.
 }
+
+
+
+//3.debug时打印
+func printLog<T>(message: T,file: String = #file,
+                   method: String = #function,
+                   line: Int = #line)
+{
+    #if DEBUG
+        print("\((file as NSString).lastPathComponent)[\(#line)], \(#function): \(message)")
+    #endif
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

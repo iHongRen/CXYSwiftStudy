@@ -68,7 +68,18 @@ func myFunc()->(Int,String) {
 }
 
 
+//元组迭代
+//利用反射，遍历后类型都是 Any。需要自己转换和匹配类型：
+let mirror = Mirror(reflecting: http404Error)
+for (label, value) in mirror.children {
 
-
-
+    print(value)
+    switch value {
+    case is Int:
+        print("Int")
+    case is String:
+        print("String")
+    default:()
+    }
+}
 

@@ -1,4 +1,4 @@
-//: 数组
+//: 数组(Array)
 
 import Foundation
 
@@ -9,9 +9,13 @@ var eArr1 = Array<Int>()
 
 //赋值
 var array = Array(1...5)
+eArr = []
 eArr = [1,2,3,4]
 eArr.append(5)
 eArr += [6,7]
+
+//访问
+let e = eArr[1]
 
 
 //NSArray
@@ -19,6 +23,15 @@ let cArr: NSArray = [1,2,2,4]
 var dArr: NSMutableArray = [1,3,3,5]
 dArr.addObject(6)
 
+
+//判空
+if array.isEmpty {
+    
+}
+
+if array.count == 0 {
+    
+}
 
 //: 遍历数组
 let arr = [10,20,30,40,50,60]
@@ -116,5 +129,88 @@ let results = arr[range2].map{
 for value in arr.dropFirst(3) {
     
 }
+
+//删除
+array.removeFirst()
+array.removeLast()
+array.removeAtIndex(1)
+array.removeAll()
+
+
+
+//: 字典(Dictionary)
+//字典的 Key 类型必须遵循 Hashable 协议
+
+//空字典
+var dict = [String : Int]()
+var dict1 = Dictionary<String,Int>()
+
+//赋值
+dict = ["age" : 25]
+dict = [:] //赋值为空字典
+dict["num"] = 1234
+
+//访问
+let value = dict["age"]
+
+//字典合并
+//方法1：自定义+=运算符
+func +=<K, V> (inout left: [K : V], right: [K : V]) {
+    for (k, v) in right {
+        left[k] = v
+    }
+}
+dict += ["err":404]
+
+
+//方法2：字典扩展
+extension Dictionary {
+    mutating func addDictionary(other:Dictionary) {
+        for (key,value) in other {
+            self[key] = value
+        }
+    }
+}
+
+dict.addDictionary(["id":123])
+
+
+//方法3：转化为NSMutableDictionary
+var mDict = NSMutableDictionary(dictionary: dict)
+mDict.addEntriesFromDictionary(["code" : 89757])
+dict = mDict as NSDictionary as! Dictionary
+
+
+//判空
+if dict.isEmpty {
+    
+}
+
+if dict.count == 0 {
+    
+}
+
+//字典遍历
+for (key, value) in dict {
+    print("k:\(key), v:\(value)")
+}
+
+
+for key in dict.keys {
+    print(key)
+}
+
+for value in dict.values {
+    print(value)
+}
+
+
+//删除
+dict.removeValueForKey("code")
+dict.removeAll()
+
+
+
+
 
 

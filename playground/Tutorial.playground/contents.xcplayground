@@ -2,7 +2,7 @@
 <playground version='6.0' target-platform='ios' display-mode='raw'>
     <pages>
         <page name='1-数据类型'/>
-        <page name='2-数组(Array)'/>
+        <page name='2-数组(Array)和字典(Dictionary)'/>
         <page name='3-可选类型(Optional)'/>
         <page name='4-函数(Functions)'/>
         <page name='5-闭包(Closures)'/>
