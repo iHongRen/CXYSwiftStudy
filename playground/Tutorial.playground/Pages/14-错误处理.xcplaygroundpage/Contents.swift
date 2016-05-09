@@ -10,7 +10,7 @@ enum VendingMachineError: ErrorType {
 }
 
 
-//2.在下面的例子中,如果请求的物品不存在,或者 卖完了,或者超出投入金额, vend(itemNamed:) 函数会抛出一个错误:
+//2.在下面的例子中,如果请求的物品不存在,或者卖完了,或者超出投入金额, vend(itemNamed:) 函数会抛出一个错误:
 struct Item {
     var price: Double
     var count: Int
@@ -36,7 +36,7 @@ func vend(itemNamed name: String) throws {
     if amountDeposited >= item.price {
         //Dispense the snack
         amountDeposited -= item.price
-        --item.count
+        item.count -= 1
         inventory[name] = item
     } else {
         let amountRequired = item.price - amountDeposited
@@ -72,7 +72,7 @@ do {
 
 
 
-//3.禁止错误传播 通过 try! 来调用抛出函数或方法禁止了错误传送,并且把调用包装在运行时断言,这样就不会抛出错误。如果错 误真的抛出了,会触发运行时错误。
+//3.禁止错误传播 通过 try! 来调用抛出函数或方法禁止了错误传送,并且把调用包装在运行时断言,这样就不会抛出错误。如果错误真的抛出了,会触发运行时错误。
 func willOnlyThrowlfTrue(value: Bool) throws {
     if value {
         //throw someError

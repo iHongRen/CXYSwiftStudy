@@ -87,6 +87,19 @@ nsArr.enumerateObjectsUsingBlock { (obj, index, stop) -> Void in
 print("str = \(str)")
 
 
+//循环
+for i in 0.stride(to: 10, by: 2) {
+    print(i)
+}
+
+for i in 10.stride (through: 0, by: -1) {
+    print(i)
+}
+
+for i in (0...10).reverse() {
+    print(i)
+}
+
 //5.从非零下标开始遍历
 (3..<arr.count).forEach {
     print("forEach: \($0)")
@@ -106,7 +119,7 @@ for (index, value) in arr[3..<arr.count].enumerate() {
 
 
 let range1 = 3..<arr.count
-for (index, value) in zip(range, arr[range]) {
+for (index, value) in zip(range1, arr[range1]) {
     
 }
 
