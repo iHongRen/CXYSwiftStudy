@@ -68,14 +68,7 @@ class CXYCarouselView: UIView {
     
     private var timer: NSTimer?
     
-    private var _imageUrls: [String] {
-        get {
-            if self.imageUrls == nil {
-                return []
-            }
-            return self.imageUrls!
-        }
-    }
+    private var _imageUrls = [String]();
     
     private var isNeedAutoScroll: Bool {
         return self._imageUrls.count > 1 && Int(self.duration) > 0
@@ -89,6 +82,8 @@ class CXYCarouselView: UIView {
                 images += imageUrls
                 images.append(imageUrls.first!)
                 self.imageUrls = images
+                
+                self._imageUrls = images;
                 
                 self.pageControl.numberOfPages = imageUrls.count
 

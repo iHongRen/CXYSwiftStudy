@@ -53,3 +53,6 @@ let myFiltedMoney = myFilter(moneyArray) {
 print(myFiltedMoney)
 
 
+//5.使用组合
+let filetedMapArray = moneyArray.filter{$0 > 30}.map{$0+100}
+print(filetedMapArray)
