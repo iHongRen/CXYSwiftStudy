@@ -2,8 +2,9 @@
 
 import UIKit
 
-//1.当前类名的字符串
+//1.获取当前类名的字符串
 class MyClass {
+    func myFunc() {}
 }
 
 extension MyClass {
@@ -50,7 +51,28 @@ func printLog<T>(message: T,file: String = #file,
 }
 
 
+//4. 使用闭包，避免NSTimer造成引用循环
+extension NSTimer {
+    typealias TimerClosure = @convention(block)(NSTimer) -> Void
+    
+    class func scheduledTimerWithTimeInterval(ti: NSTimeInterval, repeats yesOrNo: Bool, closure aClosure: TimerClosure) -> NSTimer {
+        let timer = NSTimer.scheduledTimerWithTimeInterval(ti, target: self, selector: #selector(NSTimer.timerClosure(_:)), userInfo: unsafeBitCast(aClosure,AnyObject.self), repeats: yesOrNo)
+        return timer
+    }
+    
+    class func timerClosure(timer: NSTimer) -> Void {
+        let closure = unsafeBitCast(timer.userInfo, TimerClosure.self)
+        closure(timer)
+    }
+}
 
+
+//5.- Selector Extension
+private extension Selector {
+    //static let xxxFunc = #selector(xxxClass.xxxFunc)
+}
+
+//Selector.xxxFunc
 
 
 

@@ -131,6 +131,8 @@ class CXYCarouselView: UIView {
         self.addSubview(self.collectionView)
         self.addSubview(self.pageControl)
     }
+    
+    
 }
 
 // MARK: - NSTimer Func
@@ -139,7 +141,11 @@ extension CXYCarouselView {
     func addTimer() {
         self.removeTimer()
         
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(self.duration, target: self, selector: #selector(CXYCarouselView.nextPage), userInfo: nil, repeats: true)
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(self.duration,repeats: true) {
+            [unowned self] (timer: NSTimer) in
+             self.nextPage()
+            }
+        
         NSRunLoop.mainRunLoop().addTimer(self.timer!, forMode: NSRunLoopCommonModes)
         self.timer!.fireDate = NSDate(timeIntervalSinceNow: self.duration)
     }
@@ -251,3 +257,20 @@ extension CXYCarouselView:  UICollectionViewDelegate {
         self.itemSelectedClosure?(carouselView: self,indexPath: selectedIndexPath)
     }
 }
+
+
+//使用闭包，避免NSTimer造成引用循环
+extension NSTimer {
+    typealias TimerClosure = @convention(block)(NSTimer) -> Void
+    
+    class func scheduledTimerWithTimeInterval(ti: NSTimeInterval, repeats yesOrNo: Bool, closure aClosure: TimerClosure) -> NSTimer {
+        let timer = NSTimer.scheduledTimerWithTimeInterval(ti, target: self, selector: #selector(NSTimer.timerClosure(_:)), userInfo: unsafeBitCast(aClosure,AnyObject.self), repeats: yesOrNo)
+        return timer
+    }
+    
+    class func timerClosure(timer: NSTimer) -> Void {
+        let closure = unsafeBitCast(timer.userInfo, TimerClosure.self)
+        closure(timer)
+    }
+}
+

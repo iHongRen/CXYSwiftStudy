@@ -12,7 +12,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.automaticallyAdjustsScrollViewInsets = false
         
         let carouselView = CXYCarouselView(frame: CGRect(x: 0, y: 20, width: self.view.bounds.size.width, height: self.view.bounds.size.width*0.6))
         carouselView.duration = 5
@@ -26,13 +26,6 @@ class ViewController: UIViewController {
         self.view.addSubview(carouselView)
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
 
 // MARK: - CXYCarouselViewDelegate
