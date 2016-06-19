@@ -39,8 +39,9 @@ extension String {
         
         //带音调拼音
         CFStringTransform(mutableString, nil, kCFStringTransformToLatin, false)
-            //不带音调拼音
-            CFStringTransform(mutableString, nil, kCFStringTransformStripDiacritics, false)
+        
+        //不带音调拼音
+        CFStringTransform(mutableString, nil, kCFStringTransformStripDiacritics, false)
         
         var pinyin = mutableString as String
         pinyin = pinyin.stringByFoldingWithOptions(.CaseInsensitiveSearch, locale: NSLocale.currentLocale())

@@ -19,6 +19,16 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>PresentViewController.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>PresentationController.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 		<key>TableSearch.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -38,6 +48,16 @@
 			<true/>
 		</dict>
 		<key>740BA77D1CE089DC0019AAA0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>741440901D0FDF2000632939</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>741440A61D0FDFED00632939</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -72,12 +72,40 @@ private extension Selector {
     //static let xxxFunc = #selector(xxxClass.xxxFunc)
 }
 
+//example
 //Selector.xxxFunc
 
 
 
+//6. 闭包动画代理
+class CXYAnimationClosureDelegate: NSObject {
+    
+    var animationStart:(()->Void)?
+    var animationStop:((Bool)->Void)?
+    
+    class func animationDelegateWithStart(start:(()->Void)? ,animationStop stop: ((Bool)->Void)?) -> CXYAnimationClosureDelegate {
+        let animationClosureDelegate :CXYAnimationClosureDelegate = CXYAnimationClosureDelegate()
+        animationClosureDelegate.animationStart = start
+        animationClosureDelegate.animationStop = stop
+        return animationClosureDelegate
+    }
+    
+    override func animationDidStart(anim: CAAnimation) {
+        self.animationStart?()
+    }
+    
+    override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
+        self.animationStop?(flag)
+    }
+}
+//example
+/*
+animation.delegate = CXYAnimationClosureDelegate.animationDelegateWithStart({
 
-
+}, animationStop: { (Bool) in
+    
+})
+*/
 
 
 
