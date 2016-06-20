@@ -6,7 +6,7 @@
 2.[http://wiki.jikexueyuan.com/project/swift/](http://wiki.jikexueyuan.com/project/swift/)  
 3.[http://swifter.tips](http://swifter.tips)  
 4.[http://swift.gg](http://swift.gg)  
-5....(太多blog)
+5....(一些blog)
 
 ---
 
@@ -19,8 +19,7 @@
 ![image](/images/tutorial.png)  
 
   
-
-###二. Demo  
+###二. Demo  
 
 #####1.图片轮播  
 ![image](/images/CarouselViewDemo.gif)  
