@@ -12,7 +12,7 @@
 
   
 
-### 一. Playground  
+###一. Playground  
 
 ##### 1.Tutorial.playground  
 
@@ -20,7 +20,7 @@
 
   
 
-### 二. Demo  
+###二. Demo  
 
 #####1.图片轮播  
 ![image](/images/CarouselViewDemo.gif)  
