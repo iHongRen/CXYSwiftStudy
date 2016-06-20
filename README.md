@@ -1,11 +1,17 @@
 # CXYSwiftStudy
 
-###主要知识来源：
-1.[http://wiki.jikexueyuan.com/project/swift/](http://wiki.jikexueyuan.com/project/swift/)  
-2.[http://swifter.tips](http://swifter.tips)  
-3.[http://swift.gg](http://swift.gg)  
-4.[http://www.jianshu.com/users/596f2ba91ce9/latest_articles](http://www.jianshu.com/users/596f2ba91ce9/latest_articles)  
-  
-####更多学习Swift的资料：
-[https://github.com/ipader/SwiftGuide](https://github.com/ipader/SwiftGuide)
+###知识参考：  
+0.[https://github.com/ipader/SwiftGuide](https://github.com/ipader/SwiftGuide)  
+1.[http://opensource.apple.com/source/](http://opensource.apple.com/source/)  
+2.[http://wiki.jikexueyuan.com/project/swift/](http://wiki.jikexueyuan.com/project/swift/)  
+3.[http://swifter.tips](http://swifter.tips)  
+4.[http://swift.gg](http://swift.gg)  
+5....(太多blog)
 
+---
+
+  
+
+### Playground
+
+ 

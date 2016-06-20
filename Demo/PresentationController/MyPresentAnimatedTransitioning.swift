@@ -22,7 +22,7 @@ class MyPresentAnimatedTransitioning: NSObject,UIViewControllerAnimatedTransitio
     }
     
     
-    //转场动画
+     //转场动画- 可以在这里做一些比较好看合理的动画
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         
         guard
@@ -36,7 +36,6 @@ class MyPresentAnimatedTransitioning: NSObject,UIViewControllerAnimatedTransitio
         presentedView.frame = transitionContext.finalFrameForViewController(presentedController)
         container.addSubview(presentedView)
      
-        
         presentedView.transform = CGAffineTransformMakeScale(0.3, 0.3)
         UIView.animateWithDuration(self.duration, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 10, options: .CurveEaseInOut, animations: {
             presentedView.transform = CGAffineTransformIdentity

@@ -21,6 +21,7 @@ class MyPresentationController: UIPresentationController {
         self.presentingViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    
     //呈现过渡即将开始的时候被调用的
     override func presentationTransitionWillBegin() {
         //添加半透明背景
@@ -71,7 +72,7 @@ class MyPresentationController: UIPresentationController {
     }
     
     
-    //转场后第二页View的 frame
+    //改变转场后第二页View的 frame
     override func frameOfPresentedViewInContainerView() -> CGRect {
         guard
             let containerView = containerView

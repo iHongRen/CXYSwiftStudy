@@ -22,7 +22,7 @@ class MyDismissAnimatedTransitioning: NSObject,UIViewControllerAnimatedTransitio
     }
     
     
-    //转场动画
+    //转场动画- 可以在这里做一些比较好看合理的动画
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         
         let presentedView = transitionContext.viewForKey(UITransitionContextFromViewKey)

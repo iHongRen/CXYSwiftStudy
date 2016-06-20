@@ -68,7 +68,6 @@
 		740BA78A1CE089DC0019AAA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		740BA78C1CE089DC0019AAA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		740BA7901CE08A9B0019AAA0 /* SectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionController.swift; sourceTree = "<group>"; };
-		741440911D0FDF2000632939 /* PresentViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PresentViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		741440A71D0FDFED00632939 /* PresentationController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PresentationController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		741440A91D0FDFED00632939 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		741440AE1D0FDFED00632939 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -117,13 +116,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7414408E1D0FDF2000632939 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		741440A41D0FDFED00632939 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -160,7 +152,6 @@
 				740BA7661CE02B240019AAA0 /* CarouselViewDemo.app */,
 				740BA77E1CE089DC0019AAA0 /* Expandable_TableView.app */,
 				7481CA8A1CF542D700B320FC /* TableSearch.app */,
-				741440911D0FDF2000632939 /* PresentViewController.app */,
 				741440A71D0FDFED00632939 /* PresentationController.app */,
 			);
 			name = Products;
@@ -296,23 +287,6 @@
 			productReference = 740BA77E1CE089DC0019AAA0 /* Expandable_TableView.app */;
 			productType = "com.apple.product-type.application";
 		};
-		741440901D0FDF2000632939 /* PresentViewController */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 741440A21D0FDF2000632939 /* Build configuration list for PBXNativeTarget "PresentViewController" */;
-			buildPhases = (
-				7414408D1D0FDF2000632939 /* Sources */,
-				7414408E1D0FDF2000632939 /* Frameworks */,
-				7414408F1D0FDF2000632939 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = PresentViewController;
-			productName = PresentViewController;
-			productReference = 741440911D0FDF2000632939 /* PresentViewController.app */;
-			productType = "com.apple.product-type.application";
-		};
 		741440A61D0FDFED00632939 /* PresentationController */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 741440B61D0FDFED00632939 /* Build configuration list for PBXNativeTarget "PresentationController" */;
@@ -366,9 +340,6 @@
 					740BA77D1CE089DC0019AAA0 = {
 						CreatedOnToolsVersion = 7.3;
 					};
-					741440901D0FDF2000632939 = {
-						CreatedOnToolsVersion = 7.3.1;
-					};
 					741440A61D0FDFED00632939 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
@@ -394,7 +365,6 @@
 				740BA7651CE02B240019AAA0 /* CarouselViewDemo */,
 				740BA77D1CE089DC0019AAA0 /* Expandable_TableView */,
 				7481CA891CF542D700B320FC /* TableSearch */,
-				741440901D0FDF2000632939 /* PresentViewController */,
 				741440A61D0FDFED00632939 /* PresentationController */,
 			);
 		};
@@ -429,13 +399,6 @@
 				740BA7881CE089DC0019AAA0 /* Assets.xcassets in Resources */,
 				740BA7861CE089DC0019AAA0 /* Main.storyboard in Resources */,
 				74A35F331CE0DD6300C62F1D /* HeaderView.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7414408F1D0FDF2000632939 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,13 +452,6 @@
 				74A35F311CE0DD3E00C62F1D /* HeaderView.swift in Sources */,
 				740BA7811CE089DC0019AAA0 /* AppDelegate.swift in Sources */,
 				740BA7911CE08A9B0019AAA0 /* SectionController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7414408D1D0FDF2000632939 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -761,28 +717,6 @@
 			};
 			name = Release;
 		};
-		741440A01D0FDF2000632939 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = PresentViewController/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cxy.PresentViewController;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		741440A11D0FDF2000632939 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = PresentViewController/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cxy.PresentViewController;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		741440B71D0FDFED00632939 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -862,15 +796,6 @@
 			buildConfigurations = (
 				740BA78E1CE089DC0019AAA0 /* Debug */,
 				740BA78F1CE089DC0019AAA0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		741440A21D0FDF2000632939 /* Build configuration list for PBXNativeTarget "PresentViewController" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				741440A01D0FDF2000632939 /* Debug */,
-				741440A11D0FDF2000632939 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
