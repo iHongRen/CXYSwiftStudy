@@ -18,7 +18,7 @@ var opt4: Int!        //与opt3 等价
 
 
 //解包方法
-let op = Optional.Some(5) //直接赋值
+let op = Optional.some(5) //直接赋值
 let op1 = Optional(5) //构造方法
 let opt: Int? = 5   //与上面等价
 
@@ -46,7 +46,7 @@ let _opt = opt ?? 1
 print("3. ??解包 \(_opt)")
 
 //4.enum匹配解包
-if case .Some(let __opt) = opt {
+if case .some(let __opt) = opt {
     print("4.enum匹配 \(__opt)")
 }
 

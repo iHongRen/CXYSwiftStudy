@@ -136,7 +136,7 @@ extension Int {
 }
 
 //现在,这个嵌套枚举可以和一个 Int 值联合使用了:
-func printIntegerKinds(numbers: [Int]) {
+func printIntegerKinds(_ numbers: [Int]) {
     for number in numbers {
         switch number.kind {
         case .Negative:

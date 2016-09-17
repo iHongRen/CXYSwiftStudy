@@ -20,8 +20,8 @@ class ViewController: UIViewController {
         carouselView.placeholderImage = UIImage(named: "1")
         //carouselView.delegate = self
         carouselView.itemSelectedClosure = {
-            (carouselView: CXYCarouselView, indexPath: NSIndexPath) -> Void in
-            print(indexPath.item)
+            (carouselView: CXYCarouselView, indexPath: IndexPath) -> Void in
+            print((indexPath as NSIndexPath).item)
         }
         self.view.addSubview(carouselView)
         
@@ -30,7 +30,7 @@ class ViewController: UIViewController {
 
 // MARK: - CXYCarouselViewDelegate
 extension ViewController: CXYCarouselViewDelegate {
-    func carouselView(carouselView: CXYCarouselView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        print(indexPath.item)
+    func carouselView(_ carouselView: CXYCarouselView, didSelectItemAtIndexPath indexPath: IndexPath) {
+        print((indexPath as NSIndexPath).item)
     }
 }

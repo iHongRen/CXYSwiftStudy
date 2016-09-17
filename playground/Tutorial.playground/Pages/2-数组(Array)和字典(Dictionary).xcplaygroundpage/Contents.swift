@@ -21,7 +21,7 @@ let e = eArr[1]
 //NSArray
 let cArr: NSArray = [1,2,2,4]
 var dArr: NSMutableArray = [1,3,3,5]
-dArr.addObject(6)
+dArr.add(6)
 
 
 //判空
@@ -65,7 +65,7 @@ arr.map {
 let nsArr: NSArray = ["a","b","c","d"]
 
 var str = ""
-for (index,value) in nsArr.enumerate() {
+for (index,value) in nsArr.enumerated() {
     let v = value as! String
     str += v
     if v == "c" {
@@ -76,27 +76,30 @@ print("str = \(str)")
 
 
 str = ""
-nsArr.enumerateObjectsUsingBlock { (obj, index, stop) -> Void in
-    print("enumerate :\((obj, index, stop.memory))")
+nsArr.enumerateObjects({ (obj, index, stop) -> Void in
+    print("enumerate :\((obj, index, stop.pointee))")
     let v = obj as! String
     str += v
     if v == "c" {
-        stop.memory = true
+        stop.pointee = true
     }
-}
+})
 print("str = \(str)")
 
 
 //循环
-for i in 0.stride(to: 10, by: 2) {
+print("从0开始每次加2输出")
+for i in stride(from:0, to: 10, by: 2) {
     print(i)
 }
 
-for i in 10.stride (through: 0, by: -1) {
+print("从10开始，每次减1输出")
+for i in stride(from:10, through: 0, by: -1) {
     print(i)
 }
 
-for i in (0...10).reverse() {
+print("逆序输出")
+for i in (0...10).reversed() {
     print(i)
 }
 
@@ -112,7 +115,7 @@ for index in 3..<arr.count {
 
 
 
-for (index, value) in arr[3..<arr.count].enumerate() {
+for (index, value) in arr[3..<arr.count].enumerated() {
     
 }
 
@@ -146,7 +149,7 @@ for value in arr.dropFirst(3) {
 //删除
 array.removeFirst()
 array.removeLast()
-array.removeAtIndex(1)
+array.remove(at: 1)
 array.removeAll()
 
 
@@ -168,7 +171,7 @@ let value = dict["age"]
 
 //字典合并
 //方法1：自定义+=运算符
-func +=<K, V> (inout left: [K : V], right: [K : V]) {
+func +=<K, V> ( left: inout [K : V], right: [K : V]) {
     for (k, v) in right {
         left[k] = v
     }
@@ -185,12 +188,12 @@ extension Dictionary {
     }
 }
 
-dict.addDictionary(["id":123])
+dict.addDictionary(other: ["id":123])
 
 
 //方法3：转化为NSMutableDictionary
 var mDict = NSMutableDictionary(dictionary: dict)
-mDict.addEntriesFromDictionary(["code" : 89757])
+mDict.addEntries(from: ["code" : 89757])
 dict = mDict as NSDictionary as! Dictionary
 
 
@@ -219,7 +222,7 @@ for value in dict.values {
 
 
 //删除
-dict.removeValueForKey("code")
+dict.removeValue(forKey: "code")
 dict.removeAll()
 
 

@@ -25,7 +25,7 @@ print(doubled)
 //4.字典map，返回数组
 let dict = ["key1": "value1","key2": "value2"]
 print(dict)
-let retArr = dict.map({(key,value) in (key,value.uppercaseString)})
+let retArr = dict.map({(key,value) in (key,value.uppercased())})
 print(retArr)
 
 
@@ -56,7 +56,7 @@ print(strings)
 
 
 //6.函数对一个Int类型数组的元素进行2倍放大
-func doubleArrayByTwo(xs:[Int])->[Int] {
+func doubleArrayByTwo(_ xs:[Int])->[Int] {
     var result = [Int]()
     
     for x in xs{
@@ -71,7 +71,7 @@ print(doubleArray)
 
 
 //7.函数对一个Int类型数组的元素进行f变换
-func handleIntArray(xs:[Int],f:Int->Int)->[Int] {
+func handleIntArray(_ xs:[Int],f:(Int)->Int)->[Int] {
     var result = [Int]()
     
     for x in xs {
@@ -97,7 +97,7 @@ print(handledArray1)
 
 
 //8.bool
-func handleBoolArray(xs:[Int],f:Int->Bool)->[Bool] {
+func handleBoolArray(xs:[Int],f:(Int)->Bool)->[Bool] {
     var result = [Bool]()
     for x in xs {
         result.append(f(x))
@@ -106,7 +106,7 @@ func handleBoolArray(xs:[Int],f:Int->Bool)->[Bool] {
 }
 
 //9.泛型
-func genericComputeArray<U>(xs:[Int],f:Int->U)->[U] {
+func genericComputeArray<U>(xs:[Int],f:(Int)->U)->[U] {
     var result = [U]()
     for x in xs {
         result.append(f(x))
@@ -115,7 +115,7 @@ func genericComputeArray<U>(xs:[Int],f:Int->U)->[U] {
 }
 
 //10.自定义map
-func myMap<T,U>(xs:[T],f:T->U)->[U] {
+func myMap<T,U>(_ xs:[T],f:(T)->U)->[U] {
     var result = [U]()
     for x in xs{
         result.append(f(x))

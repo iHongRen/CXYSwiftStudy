@@ -124,7 +124,7 @@ for thing in things {
         print("an (x, y) point at \(x), \(y)")
     case let movie as Movie:
         print("a movie called '\(movie.name)', dir. \(movie.director)")
-    case let stringConverter as String -> String: print(stringConverter("Michael"))
+    case let stringConverter as (String) -> String: print(stringConverter("Michael"))
     default:
         print("something else")
     }

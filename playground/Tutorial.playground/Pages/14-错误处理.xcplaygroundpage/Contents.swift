@@ -3,7 +3,7 @@
 import UIKit
 
 //1.在Swift中,错误用符合 ErrorType 协议的值表示。比如说,你可以这样表示操作自动贩卖机会出现的错误:
-enum VendingMachineError: ErrorType {
+enum VendingMachineError: Error {
     case InvalidSelection
     case InsufficientFunds(required: Double)
     case OutOfStock
@@ -73,7 +73,7 @@ do {
 
 
 //3.禁止错误传播 通过 try! 来调用抛出函数或方法禁止了错误传送,并且把调用包装在运行时断言,这样就不会抛出错误。如果错误真的抛出了,会触发运行时错误。
-func willOnlyThrowlfTrue(value: Bool) throws {
+func willOnlyThrowlfTrue(_ value: Bool) throws {
     if value {
         //throw someError
     }

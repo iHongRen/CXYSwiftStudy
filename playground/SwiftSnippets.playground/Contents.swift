@@ -19,7 +19,7 @@ extension MyClass {
 let className0 = "\(MyClass.self)"
 print(className0)
 
-let className1 = String(MyClass)
+let className1 = String(describing: MyClass.self)
 print(className1)
 
 let className2 = MyClass.myClassName()
@@ -52,16 +52,16 @@ func printLog<T>(message: T,file: String = #file,
 
 
 //4. 使用闭包，避免NSTimer造成引用循环
-extension NSTimer {
-    typealias TimerClosure = @convention(block)(NSTimer) -> Void
+extension Timer {
+    typealias TimerClosure = @convention(block)(Timer) -> Void
     
-    class func scheduledTimerWithTimeInterval(ti: NSTimeInterval, repeats yesOrNo: Bool, closure aClosure: TimerClosure) -> NSTimer {
-        let timer = NSTimer.scheduledTimerWithTimeInterval(ti, target: self, selector: #selector(NSTimer.timerClosure(_:)), userInfo: unsafeBitCast(aClosure,AnyObject.self), repeats: yesOrNo)
+    class func scheduledTimerWithTimeInterval(ti: TimeInterval, repeats yesOrNo: Bool, closure aClosure: TimerClosure) -> Timer {
+        let timer = Timer.scheduledTimer(timeInterval: ti, target: self, selector: #selector(Timer.timerClosure(_:)), userInfo: unsafeBitCast(aClosure,to: AnyObject.self), repeats: yesOrNo)
         return timer
     }
     
-    class func timerClosure(timer: NSTimer) -> Void {
-        let closure = unsafeBitCast(timer.userInfo, TimerClosure.self)
+    class func timerClosure(_ timer: Timer) -> Void {
+        let closure = unsafeBitCast(timer.userInfo, to: TimerClosure.self)
         closure(timer)
     }
 }
@@ -77,35 +77,7 @@ private extension Selector {
 
 
 
-//6. 闭包动画代理
-class CXYAnimationClosureDelegate: NSObject {
-    
-    var animationStart:(()->Void)?
-    var animationStop:((Bool)->Void)?
-    
-    class func animationDelegateWithStart(start:(()->Void)? ,animationStop stop: ((Bool)->Void)?) -> CXYAnimationClosureDelegate {
-        let animationClosureDelegate :CXYAnimationClosureDelegate = CXYAnimationClosureDelegate()
-        animationClosureDelegate.animationStart = start
-        animationClosureDelegate.animationStop = stop
-        return animationClosureDelegate
-    }
-    
-    override func animationDidStart(anim: CAAnimation) {
-        self.animationStart?()
-    }
-    
-    override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
-        self.animationStop?(flag)
-    }
-}
-//example
-/*
-animation.delegate = CXYAnimationClosureDelegate.animationDelegateWithStart({
 
-}, animationStop: { (Bool) in
-    
-})
-*/
 
 
 

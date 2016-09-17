@@ -81,13 +81,13 @@ let vga = Resolution(width:640, height: 480)
 
 struct Point {
     var x = 0.0, y = 0.0
-    mutating func moveByX(deltaX: Double, y deltaY: Double) {
+    mutating func moveBy(x deltaX: Double, y deltaY: Double) {
         x += deltaX
         y += deltaY
     }
 }
 var somePoint = Point(x: 1.0, y: 1.0)
-somePoint.moveByX(2.0, y: 3.0)
+somePoint.moveBy(x: 2.0, y: 3.0)
 print("The point is now at (\(somePoint.x), \(somePoint.y))")
 // 打印输出: "The point is now at (3.0, 4.0)"
 

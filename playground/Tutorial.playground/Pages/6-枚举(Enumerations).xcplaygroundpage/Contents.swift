@@ -189,10 +189,10 @@ enum Device {
     case iPad, iPhone, AppleTV, AppleWatch
     func introduced() -> String {
         switch self {
-        case AppleTV: return "\(self) was introduced 2006"
-        case iPhone: return "\(self) was introduced 2007"
-        case iPad: return "\(self) was introduced 2010"
-        case AppleWatch: return "\(self) was introduced 2014"
+        case .AppleTV: return "\(self) was introduced 2006"
+        case .iPhone: return "\(self) was introduced 2007"
+        case .iPad: return "\(self) was introduced 2010"
+        case .AppleWatch: return "\(self) was introduced 2014"
         }
     }
 }
@@ -206,8 +206,8 @@ enum Device1 {
     case iPad, iPhone
     var year: Int {
         switch self {
-        case iPhone: return 2007
-        case iPad: return 2010
+        case .iPhone: return 2007
+        case .iPad: return 2010
         }
     }
 }
@@ -217,7 +217,7 @@ enum Device1 {
 //你也能够为枚举创建一些静态方法(static methods)。换言之通过一个非枚举类型来创建一个枚举。在这个示例中,我们需要考虑用户有时将苹果设备叫错的情况(比如AppleWatch叫成iWatch)，需要返回一个合适的名称。
 enum Device2 {
     case AppleWatch
-    static func fromSlang(term: String) -> Device2? {
+    static func fromSlang(_ term: String) -> Device2? {
         if term == "iWatch" {
             return .AppleWatch
         }
@@ -233,12 +233,12 @@ enum TriStateSwitch {
     case Off, Low, High
     mutating func next() {
         switch self {
-        case Off:
-            self = Low
-        case Low:
-            self = High
-        case High:
-            self = Off
+        case .Off:
+            self = .Low
+        case .Low:
+            self = .High
+        case .High:
+            self = .Off
         }
     }
 }
@@ -255,7 +255,7 @@ ovenLight.next()
 
 //7.定义一个表示方向的选项集合
 //Swift版
-struct Directions: OptionSetType {
+struct Directions: OptionSet {
     var rawValue:Int
     
     static let Up = Directions(rawValue: 1 << 0)
@@ -282,8 +282,8 @@ if leftUp.contains(.Left) && leftUp.contains(.Up) {
 }
 
 
-//8.[.CurveEaseIn, .CurveEaseInOut]
-UIView.animateWithDuration(0.3, delay: 1.0, options: [.CurveEaseIn, .CurveEaseInOut], animations: { () -> Void in
+//8.[.curveEaseIn, .curveEaseInOut]
+UIView.animate(withDuration: 0.3, delay: 1.0, options: [.curveEaseIn, .curveEaseInOut], animations: { () -> Void in
     // ...
     }, completion: nil)
 

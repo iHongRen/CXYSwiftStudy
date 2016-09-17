@@ -15,7 +15,7 @@ class HeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var titleButton: UIButton!
     var clickedClosure: ClickedClosure?
     
-    @IBAction func titleClicked(sender: AnyObject) {
+    @IBAction func titleClicked(_ sender: AnyObject) {
         self.clickedClosure?()
     }
 }

@@ -507,16 +507,16 @@ struct CheckerBoard {
         return tempBoard
     }()
     
-    func squareIsBlackAtRow(row: Int, column: Int) -> Bool {
+    func squareIsBlackAt(row: Int, column: Int) -> Bool {
         return boardColors[(row * 10) + column]
     }
 }
 
 //每当一个新的 Checkerboard 实例创建时,对应的赋值闭包会执行,一系列颜色值会被计算出来作为默认值赋值给 boardColors 
 let board = CheckerBoard()
-print(board.squareIsBlackAtRow(0, column: 1))
+print(board.squareIsBlackAt(row:0, column: 1))
 // 输出 "true" 
-print(board.squareIsBlackAtRow(9, column: 9))
+print(board.squareIsBlackAt(row:9, column: 9))
 // 输出 "false"
 
 

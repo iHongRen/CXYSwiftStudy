@@ -12,14 +12,14 @@ class MainViewController: BaseTableViewController {
 
     var members = [Member]()
     
-    private lazy var resultsController: ResultsViewController! = {
+    fileprivate lazy var resultsController: ResultsViewController! = {
         let rc = ResultsViewController()
         rc.tableView.delegate = self
         return rc
     }()
     
     
-    private lazy var searchController: UISearchController! = {
+    fileprivate lazy var searchController: UISearchController! = {
         let sc = UISearchController(searchResultsController: self.resultsController)
         sc.searchResultsUpdater = self
         sc.searchBar.sizeToFit()
@@ -39,7 +39,7 @@ class MainViewController: BaseTableViewController {
         self.definesPresentationContext = true
     }
 
-    private func configData() {
+    fileprivate func configData() {
         self.members = [
             Member(name: "3Tom",mobile: "13100000000"),
             Member(name: "赵龙",mobile: "13111111111"),
@@ -56,14 +56,14 @@ class MainViewController: BaseTableViewController {
         ]
     }
     
-    private func filterMember(member: Member, argumentArray args: [AnyObject]?) -> Bool {
-        return NSPredicate(format: "%@ contains[cd] %@",argumentArray: args).evaluateWithObject(member)
+    fileprivate func filterMember(_ member: Member, argumentArray args: [AnyObject]?) -> Bool {
+        return NSPredicate(format: "%@ contains[cd] %@",argumentArray: args).evaluate(with: member)
     }
 }
 
 extension MainViewController: UISearchBarDelegate {
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
 }
@@ -71,50 +71,50 @@ extension MainViewController: UISearchBarDelegate {
 
 extension MainViewController: UISearchControllerDelegate {
     
-    func presentSearchController(searchController: UISearchController) {
+    func presentSearchController(_ searchController: UISearchController) {
         //debugPrint("UISearchControllerDelegate invoked method: \(__FUNCTION__).")
     }
     
-    func willPresentSearchController(searchController: UISearchController) {
+    func willPresentSearchController(_ searchController: UISearchController) {
         //debugPrint("UISearchControllerDelegate invoked method: \(__FUNCTION__).")
     }
     
-    func didPresentSearchController(searchController: UISearchController) {
+    func didPresentSearchController(_ searchController: UISearchController) {
         //debugPrint("UISearchControllerDelegate invoked method: \(__FUNCTION__).")
     }
     
-    func willDismissSearchController(searchController: UISearchController) {
+    func willDismissSearchController(_ searchController: UISearchController) {
         //debugPrint("UISearchControllerDelegate invoked method: \(__FUNCTION__).")
     }
     
-    func didDismissSearchController(searchController: UISearchController) {
+    func didDismissSearchController(_ searchController: UISearchController) {
         //debugPrint("UISearchControllerDelegate invoked method: \(__FUNCTION__).")
     }
 
 }
 
 extension MainViewController: UISearchResultsUpdating {
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
 
         //去掉左右空格
-        let trimString = searchController.searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        let trimString = searchController.searchBar.text!.trimmingCharacters(in: CharacterSet.whitespaces)
         
         let filteredResults = self.members.filter {
             
             //是否匹配手机号  139... -> 13999999999
-            let match_mobile = self.filterMember($0, argumentArray: [$0.mobile,trimString])
+            let match_mobile = self.filterMember($0, argumentArray: [$0.mobile as AnyObject,trimString as AnyObject])
             
             //是否匹配名字   老 -> 老王、老六
-            let match_name = self.filterMember($0, argumentArray: [$0.name,trimString])
+            let match_name = self.filterMember($0, argumentArray: [$0.name as AnyObject,trimString as AnyObject])
             
             //是否匹配带空格名字 laowang -> lao wang
-            let match_space_name = self.filterMember($0, argumentArray: [$0.pinyinName.stringByReplacingOccurrencesOfString(" ", withString: ""),trimString])
+            let match_space_name = self.filterMember($0, argumentArray: [$0.pinyinName.replacingOccurrences(of: " ", with: "") as AnyObject,trimString as AnyObject])
 
             //是否匹配名字拼音  lao -> 老
-            let match_pinyin = self.filterMember($0, argumentArray: [$0.pinyinName,trimString])
+            let match_pinyin = self.filterMember($0, argumentArray: [$0.pinyinName as AnyObject,trimString as AnyObject])
             
             //是否匹配名字拼音缩写  lw -> 老王
-            let match_abbr = self.filterMember($0, argumentArray: [$0.pinyinNameAbbreviation,trimString])
+            let match_abbr = self.filterMember($0, argumentArray: [$0.pinyinNameAbbreviation as AnyObject,trimString as AnyObject])
             
             return match_mobile || match_name || match_space_name || match_pinyin || match_abbr
         }
@@ -128,14 +128,14 @@ extension MainViewController: UISearchResultsUpdating {
 // MARK: UITableViewDataSource
 extension MainViewController {
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.members.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(BaseTableViewController.cellIdentifier, forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: BaseTableViewController.cellIdentifier, for: indexPath)
         
-        let member = self.members[indexPath.row]
+        let member = self.members[(indexPath as NSIndexPath).row]
         self.configCell(cell, forData: member)
         return cell
     }
@@ -144,15 +144,15 @@ extension MainViewController {
 // MARK: UITableViewDelegate
 extension MainViewController {
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
         let member: Member
         
         if tableView === self.tableView {
-            member = self.members[indexPath.row]
+            member = self.members[(indexPath as NSIndexPath).row]
         } else {
-            member = self.resultsController.filteredMembers[indexPath.row]
+            member = self.resultsController.filteredMembers[(indexPath as NSIndexPath).row]
         }
         print(member.name)
     }

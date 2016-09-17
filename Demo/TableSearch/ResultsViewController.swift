@@ -15,14 +15,14 @@ class ResultsViewController: BaseTableViewController {
 
 extension ResultsViewController {
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredMembers.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(BaseTableViewController.cellIdentifier, forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: BaseTableViewController.cellIdentifier, for: indexPath)
         
-        let member = filteredMembers[indexPath.row]
+        let member = filteredMembers[(indexPath as NSIndexPath).row]
         self.configCell(cell, forData: member)
         return cell
     }

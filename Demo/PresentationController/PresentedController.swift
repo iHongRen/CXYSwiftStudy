@@ -12,7 +12,7 @@ class PresentedController: UIViewController {
     
     required init?(coder aDecoder: NSCoder) {  //初始化
         super.init(coder: aDecoder)
-        self.modalPresentationStyle = .Custom
+        self.modalPresentationStyle = .custom
         self.transitioningDelegate = self
     }
     
@@ -25,17 +25,17 @@ class PresentedController: UIViewController {
 extension PresentedController: UIViewControllerTransitioningDelegate {
     
     //UIPresentationController 控制器
-    func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
-        return MyPresentationController(presentedViewController: presented, presentingViewController: presenting)
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        return MyPresentationController(presentedViewController: presented, presenting: presenting)
     }
     
     //呈现动画
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return MyPresentAnimatedTransitioning(duration: 0.3)
     }
     
     //dismiss动画
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return MyDismissAnimatedTransitioning(duration: 0.3)
     }
 }

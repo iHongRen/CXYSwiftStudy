@@ -37,7 +37,7 @@ unit4A = Apartment(number: "4A")
 //在两个实例被创建和赋值后,下图表现了强引用的关系。变量 john 现在有一个指向 Person 实例的强引用,而 变量 unit4A 有一个指向 Apartment 实例的强引用:
 // //: ![image](1.png)
 // var image = UIImage(named: "1")
-[#Image(imageLiteral: "1.png")#].imageWithRenderingMode(.Automatic)
+#imageLiteral(resourceName: "1.png").withRenderingMode(.automatic)
 
 //现在你能够将这两个实例关联在一起,这样人就能有公寓住了,而公寓也有了房客。注意感叹号是用来展开和访问可选变量 john 和 unit4A 中的实例,这样实例的属性才能被赋值:
 john!.apartment = unit4A
@@ -45,7 +45,7 @@ unit4A!.tenant = john
 //在将两个实例联系在一起之后,强引用的关系如图所示:
 // //: ![image](2.png)
 // image = UIImage(named: "2")
-[#Image(imageLiteral: "2.png")#].imageWithRenderingMode(.Automatic)
+#imageLiteral(resourceName: "2.png").withRenderingMode(.automatic)
 //不幸的是,这两个实例关联后会产生一个循环强引用。Persion实例现在有了一个指向Apartment 实例的强引用,而Apartment实例也有了一个指向Persion实例的强引用。因此,当你断开john 和 unit4A 变量所持有的强引用时,引用计数并不会降为0,实例也不会被ARC销毁:
 john = nil
 unit4A = nil
@@ -53,7 +53,7 @@ unit4A = nil
 //循环强引用会一直阻止Persion 和 Apartment类实例的销毁,这就在你的应用程序中造成了内存泄漏。强引用关系如下图:
 // //: ![image](3.png)
 // image = UIImage(named: "3")
-[#Image(imageLiteral: "3.png")#].imageWithRenderingMode(.Automatic)
+#imageLiteral(resourceName: "3.png").withRenderingMode(.automatic)
 
 //Person和Apartment实例之间的强引用关系保留了下来并且不会被断开。
 
@@ -103,12 +103,12 @@ unit4A1!.tenant = john1
 //现在,两个关联在一起的实例的引用关系如下图所示:
 // //: ![image](4.png)
 // image = UIImage(named: "4")
-[#Image(imageLiteral: "4.png")#].imageWithRenderingMode(.Automatic)
+#imageLiteral(resourceName: "4.png").withRenderingMode(.automatic)
 
 //Person1 实例依然保持对 Apartment1 实例的强引用,但是 Apartment1 实例只是对 Person1 实例的弱引用。这意 味着当你断开 john1 变量所保持的强引用时,再也没有指向 Person1 实例的强引用了:
 // //: ![image](5.png)
 // image = UIImage(named: "5")
-[#Image(imageLiteral: "5.png")#].imageWithRenderingMode(.Automatic)
+#imageLiteral(resourceName: "5.png").withRenderingMode(.automatic)
 //由于再也没有指向 Person1 实例的强引用,该实例会被销毁:
 john1 = nil
 // prints "John Appleseed is being deinitialized"
@@ -116,7 +116,7 @@ john1 = nil
 //唯一剩下的指向 Apartment 实例的强引用来自于变量 unit4A1 。如果你断开这个强引用,再也没有指向 Apartment 实例的强引用了:
 // //: ![image](6.png)
 // image = UIImage(named: "6")
-[#Image(imageLiteral: "6.png")#].imageWithRenderingMode(.Automatic)
+#imageLiteral(resourceName: "6.png").withRenderingMode(.automatic)
 //由于再也没有指向 Apartment 实例的强引用,该实例也会被销毁:
 unit4A1 = nil
 // prints "Apartment #731 is being deinitialized"
@@ -167,13 +167,13 @@ john2!.card = CreditCard(number: 1234_5678_9012_3456, customer: john2!)
 // //: ![image](7.png)
 // image = UIImage(named: "7")
 
-[#Image(imageLiteral: "7.png")#].imageWithRenderingMode(.Automatic)
+#imageLiteral(resourceName: "7.png").withRenderingMode(.automatic)
 
 //Customer 实例持有对 CreditCard 实例的强引用,而 CreditCard 实例持有对 Customer 实例的无主引用。当你断开 john2 变量持有的强引用时,再也没有指向 Customer 实例的强引用了:
 // //: ![image](8.png)
 // image = UIImage(named: "8")
 
-[#Image(imageLiteral: "8.png")#].imageWithRenderingMode(.Automatic)
+#imageLiteral(resourceName: "8.png").withRenderingMode(.automatic)
 
 //由于再也没有指向 Customer 实例的强引用,该实例被销毁了。其后,再也没有指向 CreditCard 实例的强引用,该实例也随之被销毁了:
 john2 = nil
@@ -227,7 +227,7 @@ class HTMLElement {
     let name: String
     let text: String?
     
-    lazy var asHTML: Void -> String = {
+    lazy var asHTML: () -> String = {
         if let text = self.text {
             return "<\(self.name)>\(text)</\(self.name)>"
         } else {
@@ -253,7 +253,7 @@ print(paragraph!.asHTML())
 //不幸的是,上面写的 HTMLElement 类产生了类实例和 asHTML 默认值的闭包之间的循环强引用。循环强引用,如下图所示:
 // //: ![image](9.png)
 // image = UIImage(named: "9")
-[#Image(imageLiteral: "9.png")#].imageWithRenderingMode(.Automatic)
+#imageLiteral(resourceName: "9.png").withRenderingMode(.automatic)
 //实例的 asHTML 属性持有闭包的强引用。但是,闭包在其闭包体内使用了 self (引用了 self.name 和 self.text ),因此闭包捕获了 self ,这意味着闭包又反过来持有了 HTMLElement 实例的强引用。这样两个对象就产生了循环强引用。
 
 //注意:虽然闭包多次使用了 self ,它只捕获 HTMLElement 实例的一个强引用。
@@ -299,7 +299,7 @@ class HTMLElement1 {
     let name: String
     let text: String?
     
-    lazy var asHTML: Void -> String = {
+    lazy var asHTML: () -> String = {
         [unowned self] in
         if let text = self.text {
             return "<\(self.name)>\(text)</\(self.name)>"
@@ -327,7 +327,7 @@ print(paragraph1!.asHTML())
 //使用捕获列表后引用关系如下图所示:
 // //: ![image](10.png)
 // image = UIImage(named: "10")
-[#Image(imageLiteral: "10.png")#].imageWithRenderingMode(.Automatic)
+#imageLiteral(resourceName: "10.png").withRenderingMode(.automatic)
 
 //这一次,闭包以无主引用的形式捕获 self ,并不会持有 HTMLElement 实例的强引用。如果将 paragraph 赋值为 nil , HTMLElement 实例将会被销毁,并能看到它的析构函数打印出的消息。
 paragraph1 = nil

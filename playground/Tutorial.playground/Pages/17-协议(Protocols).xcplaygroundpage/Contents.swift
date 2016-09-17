@@ -46,7 +46,8 @@ class LinearCongruentialGenerator: RandomNumberGenerator {
     let a = 3877.0
     let c = 29573.0
     func random() -> Double {
-        lastRandom = ((lastRandom * a + c) % m)
+        lastRandom = ((lastRandom * a + c).truncatingRemainder(dividingBy:m))
+
         return lastRandom / m
     }
 }
@@ -64,17 +65,17 @@ protocol Togglable {
 }
 
 enum OnOffSwitch: Togglable {
-    case Off, On
+    case off, on
     mutating func toggle() {
         switch self {
-        case Off:
-            self = On
-        case On:
-            self = Off
+        case .off:
+            self = .on
+        case .on:
+            self = .off
         }
     }
 }
-var lightSwitch = OnOffSwitch.Off
+var lightSwitch = OnOffSwitch.off
 lightSwitch.toggle()
 //lightSwitch 现在的值为 .On
 
@@ -145,9 +146,9 @@ protocol DiceGame {
 }
 
 protocol DiceGameDelegate {
-    func gameDidStart(game: DiceGame)
-    func game(game: DiceGame, didStartNewTurnWithDiceRoll diceRoll:Int)
-    func gameDidEnd(game: DiceGame)
+    func gameDidStart(_ game: DiceGame)
+    func game(_ game: DiceGame, didStartNewTurnWithDiceRoll diceRoll:Int)
+    func gameDidEnd(_ game: DiceGame)
 }
 
 //该类遵循了 DiceGame 协议
@@ -157,7 +158,7 @@ class SnakesAndLadders: DiceGame {
     var square = 0
     var board: [Int]
     init() {
-        board = [Int](count: finalSquare + 1, repeatedValue: 0)
+        board = [Int](repeating: 0, count: finalSquare + 1)
         board[03] = +08; board[06] = +11; board[09] = +09; board[10] = +02
         board[14] = -10; board[19] = -11; board[22] = -02; board[24] = -08
     }
@@ -185,7 +186,7 @@ class SnakesAndLadders: DiceGame {
 //DiceGameTracker 遵循了 DiceGameDelegate 协议
 class DiceGameTracker: DiceGameDelegate {
     var numberOfTurns = 0
-    func gameDidStart(game: DiceGame) {
+    func gameDidStart(_ game: DiceGame) {
         numberOfTurns = 0
         if game is SnakesAndLadders {
             print("Started a new game of Snakes and Ladders")
@@ -193,12 +194,12 @@ class DiceGameTracker: DiceGameDelegate {
         print("The game is using a \(game.dice.sides)-sided dice")
     }
     
-    func game(game: DiceGame, didStartNewTurnWithDiceRoll diceRoll: Int) {
+    func game(_ game: DiceGame, didStartNewTurnWithDiceRoll diceRoll: Int) {
         numberOfTurns += 1
         print("Rolled a \(diceRoll)")
     }
     
-    func gameDidEnd(game: DiceGame) {
+    func gameDidEnd(_ game: DiceGame) {
         print("The game lasted for \(numberOfTurns) turns")
     }
 }
@@ -332,7 +333,7 @@ struct Person1: Named, Aged {
     var name: String
     var age: Int
 }
-func wishHappyBirthday(celebrator: protocol<Named, Aged>) {
+func wishHappyBirthday(_ celebrator: Named & Aged) {
     print("Happy birthday \(celebrator.name) - you're \(celebrator.age)!") }
 
 let birthdayPerson = Person1(name: "Malcolm", age: 21)
@@ -404,15 +405,15 @@ for object in objects {
 
 //1. 协议中使用 ￼optional 关键字作为前缀来定义可选成员
 @objc protocol CounterDataSource {
-    optional func incrementForCount(count: Int) -> Int
-    optional var fixedIncrement: Int { get }
+    @objc optional func incrementFor(count: Int) -> Int
+    @objc optional var fixedIncrement: Int { get }
 }
 
 class Counter {
     var count = 0
     var dataSource: CounterDataSource?
     func increment() {
-        if let amount = dataSource?.incrementForCount?(count) {
+        if let amount = dataSource?.incrementFor?(count: count) {
             count += amount
         } else if let amount = dataSource?.fixedIncrement {
             count += amount
@@ -434,7 +435,7 @@ for _ in 1...4 {
 
 //2. 下面是一个更为复杂的数据源 TowardsZeroSource ,它将使得最后的值变为0
 class TowardsZeroSource: CounterDataSource {
-    @objc func incrementForCount(count: Int) -> Int {
+    @objc func incrementFor(count: Int) -> Int {
         if count == 0 {
             return 0
         } else if count < 0 {
@@ -476,7 +477,7 @@ extension PrettyTextRepresentable {
 }
 
 //3. 可以扩展￼CollectionType协议,但是只适用于元素遵循TextRepresentable的情况,使用 where 关键字
-extension CollectionType where Generator.Element : TextRepresentable {
+extension Collection where Iterator.Element : TextRepresentable {
     func asList() -> String {
         return "(" + ", " + "\(map({$0.asText()}))" + ")"
     }

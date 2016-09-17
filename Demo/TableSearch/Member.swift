@@ -16,11 +16,11 @@ class Member: NSObject {
     }()
     
     lazy var pinyinNameArray: [String] = {
-        return self.pinyinName.componentsSeparatedByString(" ")
+        return self.pinyinName.components(separatedBy: " ")
     }()
     
     lazy var pinyinNameAbbreviation: String = {
-      return  self.pinyinNameArray.map { $0.fistLetter() }.joinWithSeparator("")
+      return  self.pinyinNameArray.map { $0.fistLetter() }.joined(separator: "")
     }()
     
     init(name: String, mobile: String) {
@@ -35,7 +35,7 @@ extension String {
     
     func toPinyin() -> String {
         
-        let mutableString = NSMutableString(string: self) as CFMutableStringRef
+        let mutableString = NSMutableString(string: self) as CFMutableString
         
         //带音调拼音
         CFStringTransform(mutableString, nil, kCFStringTransformToLatin, false)
@@ -44,15 +44,15 @@ extension String {
         CFStringTransform(mutableString, nil, kCFStringTransformStripDiacritics, false)
         
         var pinyin = mutableString as String
-        pinyin = pinyin.stringByFoldingWithOptions(.CaseInsensitiveSearch, locale: NSLocale.currentLocale())
+        pinyin = pinyin.folding(options: .caseInsensitive, locale: Locale.current)
         
-        pinyin = pinyin.stringByReplacingOccurrencesOfString("'", withString: "")
+        pinyin = pinyin.replacingOccurrences(of: "'", with: "")
         return pinyin
     }
     
     
     func fistLetter() -> String {
-        return self.substringToIndex(self.startIndex.advancedBy(1))
+        return self.substring(to: self.characters.index(self.startIndex, offsetBy: 1))
     }
 }
 

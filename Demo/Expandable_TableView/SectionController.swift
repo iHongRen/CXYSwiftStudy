@@ -21,48 +21,48 @@ class SectionController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
-        self.tableView.registerNib(UINib(nibName: "HeaderView", bundle:nil), forHeaderFooterViewReuseIdentifier: String(HeaderView))
+        self.tableView.register(UINib(nibName: "HeaderView", bundle:nil), forHeaderFooterViewReuseIdentifier: String(describing: HeaderView.self))
     }
 
     
     // MARK: - delegate
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return self.dataSouure.count
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (!self.expandArray[section]) {
             return 0
         }
         return self.dataSouure[section].count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell")
-        cell?.textLabel?.text = self.dataSouure[indexPath.section][indexPath.row]
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+        cell?.textLabel?.text = self.dataSouure[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
         return cell!
     }
     
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(String(HeaderView)) as! HeaderView
-        header.titleButton .setTitle(self.titleArray[section], forState: .Normal)
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: HeaderView.self)) as! HeaderView
+        header.titleButton .setTitle(self.titleArray[section], for: UIControlState())
         header.clickedClosure = { [unowned self] () in
             let isExpand = self.expandArray[section]
             self.expandArray[section] = !isExpand
             
-            let indexSet = NSIndexSet(index: section)
+            let indexSet = IndexSet(integer: section)
             tableView.beginUpdates()
-            tableView.reloadSections(indexSet, withRowAnimation: .None)
+            tableView.reloadSections(indexSet, with: .none)
             tableView.endUpdates()
         }
         return header
     }
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

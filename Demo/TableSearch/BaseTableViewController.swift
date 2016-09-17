@@ -17,7 +17,7 @@ class BaseTableViewController: UITableViewController {
         super.viewDidLoad()
         
         let nib = UINib(nibName: BaseTableViewController.nibName, bundle: nil)
-        self.tableView.registerNib(nib, forCellReuseIdentifier: BaseTableViewController.cellIdentifier)
+        self.tableView.register(nib, forCellReuseIdentifier: BaseTableViewController.cellIdentifier)
     }
 }
 
@@ -25,7 +25,7 @@ class BaseTableViewController: UITableViewController {
 // MARK: configure cell
 extension BaseTableViewController {
     
-    func configCell(cell: UITableViewCell, forData member: Member) {
+    func configCell(_ cell: UITableViewCell, forData member: Member) {
         cell.textLabel?.text = member.name
         cell.detailTextLabel?.text = member.mobile
     }

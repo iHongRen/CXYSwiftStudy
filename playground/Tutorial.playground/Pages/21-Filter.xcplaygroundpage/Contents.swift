@@ -20,7 +20,7 @@ let filetedArray = moneyArray.filter {
 print(filetedArray)
 
 //3.用函数实现filter 功能
-func getFilesByCondition(files:[String],f:String->Bool)->[String] {
+func getFilesByCondition(_ files:[String],f:(String)->Bool)->[String] {
     var result = [String]()
     for file in files{
         if f(file){
@@ -36,7 +36,7 @@ let filteredC = getFilesByCondition(filesNeedToFilter) {
 }
 
 //4.自定义filter
-func myFilter<T>(xs:[T],check:T->Bool)->[T] {
+func myFilter<T>(_ xs:[T],check:(T)->Bool)->[T] {
     var result = [T]()
     for x in xs{
         //必须经过条件判断才可以

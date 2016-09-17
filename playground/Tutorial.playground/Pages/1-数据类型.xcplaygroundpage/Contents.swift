@@ -57,7 +57,7 @@ if http403Error == http404Error {
 //元组使用场景
 let myArr = [10,20,30,40]
 
-for (index, value) in myArr.enumerate() {
+for (index, value) in myArr.enumerated() {
     print("\(index)=> \(value)")
 }
 

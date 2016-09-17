@@ -13,21 +13,21 @@ class MyPresentationController: UIPresentationController {
     
     lazy var dimmingView :UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.blackColor()
+        view.backgroundColor = UIColor.black
         return view
     }()
     
-    func dimmingViewTapped(tap: UIGestureRecognizer) {
-        self.presentingViewController.dismissViewControllerAnimated(true, completion: nil)
+    func dimmingViewTapped(_ tap: UIGestureRecognizer) {
+        self.presentingViewController.dismiss(animated: true, completion: nil)
     }
     
     
     //呈现过渡即将开始的时候被调用的
     override func presentationTransitionWillBegin() {
         //添加半透明背景
-        guard
-            let containerView = containerView,
-            let presentedView = presentedView()
+        guard let
+             containerView = containerView,
+             let presentedView = presentedView
         else {
             return
         }
@@ -40,8 +40,8 @@ class MyPresentationController: UIPresentationController {
         containerView.addSubview(presentedView)
         
         self.dimmingView.alpha = 0.0
-        if let transitionCoordinator = self.presentingViewController.transitionCoordinator() {
-            transitionCoordinator.animateAlongsideTransition({ (context: UIViewControllerTransitionCoordinatorContext!) in
+        if let transitionCoordinator = self.presentingViewController.transitionCoordinator {
+            transitionCoordinator.animate(alongsideTransition: { (context: UIViewControllerTransitionCoordinatorContext!) in
                 self.dimmingView.alpha = 0.5
                 }, completion: nil)
         }
@@ -49,7 +49,7 @@ class MyPresentationController: UIPresentationController {
     }
     
     //呈现过渡结束时被调用的
-    override func presentationTransitionDidEnd(completed: Bool) {
+    override func presentationTransitionDidEnd(_ completed: Bool) {
         if !completed {
             self.dimmingView.removeFromSuperview()
         }
@@ -57,15 +57,15 @@ class MyPresentationController: UIPresentationController {
     
     //呈现过渡即将取消的时候被调用的
     override func dismissalTransitionWillBegin() {
-        if let transitionCoordinator = self.presentingViewController.transitionCoordinator() {
-            transitionCoordinator.animateAlongsideTransition({(context: UIViewControllerTransitionCoordinatorContext!) -> Void in
+        if let transitionCoordinator = self.presentingViewController.transitionCoordinator {
+            transitionCoordinator.animate(alongsideTransition: {(context: UIViewControllerTransitionCoordinatorContext!) -> Void in
                 self.dimmingView.alpha  = 0.0
                 }, completion:nil)
         }
     }
     
     //取消呈现过渡完成的时候被调用的
-    override func dismissalTransitionDidEnd(completed: Bool) {
+    override func dismissalTransitionDidEnd(_ completed: Bool) {
         if completed {
             self.dimmingView.removeFromSuperview()
         }
@@ -73,15 +73,15 @@ class MyPresentationController: UIPresentationController {
     
     
     //改变转场后第二页View的 frame
-    override func frameOfPresentedViewInContainerView() -> CGRect {
-        guard
-            let containerView = containerView
+    override var frameOfPresentedViewInContainerView : CGRect {
+        guard let
+             containerView = containerView
         else {
             return CGRect()
         }
         
         let frame = containerView.bounds;
-        return CGRectInset(frame, 50.0, 50.0)
+        return frame.insetBy(dx: 50.0, dy: 50.0)
     }
 }
 

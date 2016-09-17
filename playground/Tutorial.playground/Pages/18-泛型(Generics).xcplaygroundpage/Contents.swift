@@ -4,7 +4,7 @@ import UIKit
 
 //: 泛型所解决的问题
 //1.这里是一个标准的,非泛型函数 swapTwoInts ,用来交换两个Int值
-func swapTwoInts(inout a: Int, inout _ b: Int) {
+func swapTwoInts(_ a: inout Int,  _ b: inout Int) {
     let temporaryA = a
     a = b
     b = temporaryA
@@ -19,12 +19,12 @@ print("someInt is now \(someInt), and anotherInt is now \(anotherInt)")
 
 
 //swapTwoInts(_:_:) 函数是非常有用的,但是它只能交换 Int 值,如果你想要交换两个 String 或者 Doubl e ,就不得不写更多的函数,如 swapTwoStrings 和 swapTwoDoubles(_:_:) ,如同如下所示:
-func swapTwoStrings(inout a: String, inout _ b: String) {
+func swapTwoStrings(_ a: inout String, _ b: inout String) {
     let temporaryA = a
     a = b
     b = temporaryA
 }
-func swapTwoDoubles(inout a: Double, inout _ b: Double) {
+func swapTwoDoubles( a: inout Double, _ b: inout Double) {
     let temporaryA = a
     a = b
     b = temporaryA
@@ -42,7 +42,7 @@ func swapTwoDoubles(inout a: Double, inout _ b: Double) {
 
 //: 泛型函数
 //2.泛型函数可以工作于任何类型,这里是一个上面 swapTwoInts(_:_:) 函数的泛型版本,用于交换两值:
-func swapTwoValues<T>(inout a: T, inout _ b: T) {
+func swapTwoValues<T>(_ a: inout T, _ b: inout T) {
     let temporaryA = a
     a = b
     b = temporaryA
@@ -67,7 +67,7 @@ struct IntStack {
 //这里是一个相同代码的泛型版本:
 struct Stack<T> {
     var items = [T]()
-    mutating func push(item: T) {
+    mutating func push(_ item: T) {
         items.append(item)
     }
     mutating func pop() -> T {
@@ -123,8 +123,8 @@ func someFunction<T: SomeClass, U: SomeProtocol>(someT: T, someU: U) {
 
 //: 类型约束行为
 //6.这里有个名为 findStringIndex 的非泛型函数,该函数功能是去查找包含一给定 String 值的数组:
-func findStringIndex(array: [String], _ valueToFind: String) -> Int? {
-    for (index, value) in array.enumerate() {
+func findStringIndex(_ array: [String], _ valueToFind: String) -> Int? {
+    for (index, value) in array.enumerated() {
         if value == valueToFind {
             return index
         }
@@ -140,12 +140,13 @@ if let foundIndex = findStringIndex(strings, "llama") {
 
 //这里展示如何写一个你或许期望的 findStringIndex 的泛型版本 findIndex:
 func findIndex<T>(array: [T], _ valueToFind: T) -> Int? {
-    for (index, value) in array.enumerate() {
+    for (index, value) in array.enumerated() {
         /*
         if value == valueToFind { //不能通过编译,见下面解释
         return index
         }
         */
+        print(index,value)
     }
     return nil
 }
@@ -154,8 +155,8 @@ func findIndex<T>(array: [T], _ valueToFind: T) -> Int? {
 //Swift 标准库中定义了一个 Equatable 协议,该协议要求任何遵循的Equatable 类型实现等式符(==)和不等符(!=)对任何两个该类型进行比较。所有的 Swift 标准类型自动支持 Equatable 协议。
 
 //可以写一个 Equatable 类型约束作为类型参数定义的一部分:
-func findIndex<T: Equatable>(array: [T], _ valueToFind: T) -> Int? {
-    for (index, value) in array.enumerate() {
+func findIndex<T: Equatable>(array: [T], valueToFind: T) -> Int? {
+    for (index, value) in array.enumerated() {
         if value == valueToFind {
             return index
         }
@@ -163,9 +164,9 @@ func findIndex<T: Equatable>(array: [T], _ valueToFind: T) -> Int? {
     return nil
 }
 
-let doubleIndex = findIndex([3.14159, 0.1, 0.25], 9.3)
+let doubleIndex = findIndex(array:[3.14159, 0.1, 0.25],valueToFind: 9.3)
 // doubleIndex is an optional Int with no value, because 9.3 is not in the array
-let stringIndex = findIndex(["Mike", "Malcolm", "Andrea"], "Andrea")
+let stringIndex = findIndex(array:["Mike", "Malcolm", "Andrea"],valueToFind: "Andrea")
 // stringIndex is an optional Int containing a value of 2
 
 
@@ -175,7 +176,7 @@ let stringIndex = findIndex(["Mike", "Malcolm", "Andrea"], "Andrea")
 //7.这里是一个 Container 协议的例子,定义了一个 ItemType 关联类型:
 protocol Container {
     associatedtype ItemType
-    mutating func append(item: ItemType)
+    mutating func append(_ item: ItemType)
     var count: Int { get }
     subscript(i: Int) -> ItemType { get }
 }
@@ -186,7 +187,7 @@ protocol Container {
 struct IntStack1: Container {
     // IntStack的原始实现
     var items = [Int]()
-    mutating func push(item: Int) {
+    mutating func push(_ item: Int) {
         items.append(item)
     }
     mutating func pop() -> Int {
@@ -194,7 +195,7 @@ struct IntStack1: Container {
     }
     // 遵循Container协议的实现
     typealias ItemType = Int
-    mutating func append(item: Int) {
+    mutating func append(_ item: Int) {
         self.push(item)
     }
     var count: Int {
@@ -210,14 +211,14 @@ struct IntStack1: Container {
 struct Stack1<T>: Container {
     // original Stack<T> implementation
     var items = [T]()
-    mutating func push(item: T) {
+    mutating func push(_ item: T) {
         items.append(item)
     }
     mutating func pop() -> T {
         return items.removeLast()
     }
     // conformance to the Container protocol
-    mutating func append(item: T) {
+    mutating func append(_ item: T) {
         self.push(item)
     }
     var count: Int {
@@ -235,9 +236,9 @@ struct Stack1<T>: Container {
 extension Array: Container {}
 
 func allItemsMatch<
-    C1: Container, C2: Container
-    where C1.ItemType == C2.ItemType, C1.ItemType: Equatable> (
-    someContainer: C1, anotherContainer: C2) -> Bool {
+    C1: Container, C2: Container> (
+    someContainer: C1, anotherContainer: C2) -> Bool
+    where C1.ItemType == C2.ItemType, C1.ItemType: Equatable {
         // 检查两个Container的元素个数是否相同
         if someContainer.count != anotherContainer.count {
             return false
@@ -259,7 +260,7 @@ stackOfStrings1.push("uno")
 stackOfStrings1.push("dos")
 stackOfStrings1.push("tres")
 var arrayOfStrings = ["uno", "dos", "tres"]
-if allItemsMatch(stackOfStrings1, anotherContainer: arrayOfStrings) {
+if allItemsMatch(someContainer: stackOfStrings1, anotherContainer: arrayOfStrings) {
     print("All items match.")
 } else {
     print("Not all items match.")
