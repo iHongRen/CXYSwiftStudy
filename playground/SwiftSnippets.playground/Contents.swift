@@ -76,15 +76,54 @@ private extension Selector {
 //Selector.xxxFunc
 
 
+//6. 检测 API 可用性
+if #available(iOS 10, macOS 10.12, *) {
+    // 在 iOS 使用 iOS 10 的 API, 在 macOS 使用 macOS 10.12 的 API
+} else {
+    // 使用先前版本的 iOS 和 macOS 的 API
+}
 
 
 
+public protocol Then {}
+
+extension Then where Self: Any {
+    /// Makes it available to set properties with closures just after initializing.
+    ///
+    ///     let label = UILabel().then {
+    ///         $0.textAlignment = .Center
+    ///         $0.textColor = UIColor.blackColor()
+    ///         $0.text = "Hello, World!"
+    ///     }
+    public func then( block: (inout Self) -> Void) -> Self {
+        var copy = self
+        block(&copy)
+        return copy
+    }
+}
+
+extension Then where Self: AnyObject {
+    /// Makes it available to set properties with closures just after initializing.
+    ///
+    ///     let label = UILabel().then {
+    ///         $0.textAlignment = .Center
+    ///         $0.textColor = UIColor.blackColor()
+    ///         $0.text = "Hello, World!"
+    ///     }
+    public func then( block: (Self) -> Void) -> Self {
+        block(self)
+        return self
+    }
+}
+
+extension NSObject: Then {}
 
 
-
-
-
-
+let _ = UILabel().then{
+    $0.textAlignment = .center
+    $0.text = "hello"
+    $0.textColor = UIColor.red
+}
 
 
 

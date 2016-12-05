@@ -106,8 +106,64 @@ let alsoIncrementByTen = incrementByTen
 alsoIncrementByTen() // 返回的值为40
 
 
+//: 逃逸闭包(Escaping Closures)
+//当一个闭包作为参数传到一个函数中，但是这个闭包在函数返回之后才被执行，我们称该闭包从函数中逃逸。@escaping。
 
-//: @autoclosure 
+//一种能使闭包“逃逸”出函数的方法是，将这个闭包保存在一个函数外部定义的变量中。
+var completionHandlers: [() -> Void] = []
+func someFunctionWithEscapingClosure(completionHandler: @escaping () -> Void) {
+    completionHandlers.append(completionHandler)
+}
+
+//将一个闭包标记为 @escaping 意味着你必须在闭包中显式地引用 self 。
+func someFunctionWithNonescapingClosure(closure: () -> Void) {
+    closure()
+}
+class SomeClass {
+    var x = 10
+    func doSomething() {
+        someFunctionWithEscapingClosure { self.x = 100 } //需要显式调用
+        someFunctionWithNonescapingClosure { x = 200 }
+    }
+}
+let instance = SomeClass()
+instance.doSomething()
+print(instance.x)
+// 打印出 "200"
+completionHandlers.first?()
+print(instance.x)
+// 打印出 "100"
+
+//: 自动闭包(Autoclosures)
+//自动闭包是一种自动创建的闭包，用于包装传递给函数作为参数的表达式。这种闭包不接受任何参数，当它被调用的时候，会返回被包装在其中的表达式的值。这种便利语法让你能够省略闭包的花括号，用一个普通的表达式来代替显式的闭包。
+//自动闭包让你能够延迟求值，因为直到你调用这个闭包，代码段才会被执行。
+var customersInLine = ["Chris", "Alex", "Ewa", "Barry", "Daniella"]
+print(customersInLine.count)
+// 打印出 "5"
+let customerProvider = {
+    customersInLine.remove(at: 0)
+}
+print(customersInLine.count)
+// 打印出 "5"
+print("Now serving \(customerProvider())!") // Prints "Now serving Chris!" print(customersInLine.count)
+// 打印出 "4"
+
+//将闭包作为参数传递给函数时，你能获得同样的延时求值行为。
+// customersInLine is ["Alex", "Ewa", "Barry", "Daniella"]
+func serve(customer customerProvider: () -> String) {
+    print("Now serving \(customerProvider())!")
+}
+serve(customer: { customersInLine.remove(at: 0) } ) // 打印出 "Now serving Alex!"
+
+//下面这个版本的 serve(customer:) 完成了相同的操作，不过它并没有接受一个显式的闭包，而是通过将参数标记为 @autoclosure 来接收一个自动闭包。
+// customersInLine is ["Ewa", "Barry", "Daniella"]
+func serve1(customer customerProvider: @autoclosure () -> String) {
+    print("Now serving \(customerProvider())!")
+}
+serve1(customer: customersInLine.remove(at: 0)) // 打印出 "Now serving Ewa!"
+
+//如果你想让一个自动闭包可以“逃逸”，则应该同时使用 @autoclosure 和 @escaping 属性。
+
 //@autoclosure 能够把表达式自动的封装成闭包，要注意的是@autoclosure只能用在（）->T这样无参数的闭包中。
 
 func logIfTrue(predicate: () -> Bool) {
@@ -126,7 +182,6 @@ func logIfTure1( predicate: @autoclosure () -> Bool) {
 }
 
 logIfTure1(predicate: 2 > 1)
-
 
 //swift将会把 2 > 1 这个表达式自动转换为 () -> Bool。
 

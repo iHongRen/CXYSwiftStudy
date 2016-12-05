@@ -340,10 +340,12 @@
 					};
 					740BA77D1CE089DC0019AAA0 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = C98SFK75FC;
 						LastSwiftMigration = 0800;
 					};
 					741440A61D0FDFED00632939 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = C98SFK75FC;
 						LastSwiftMigration = 0800;
 					};
 					7481CA891CF542D700B320FC = {
@@ -705,6 +707,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = C98SFK75FC;
 				INFOPLIST_FILE = Expandable_TableView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cxy.Expandable-TableView";
@@ -717,6 +721,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = C98SFK75FC;
 				INFOPLIST_FILE = Expandable_TableView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cxy.Expandable-TableView";
@@ -729,6 +735,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = C98SFK75FC;
 				INFOPLIST_FILE = PresentationController/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cxy.PresentationController;
@@ -741,6 +749,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = C98SFK75FC;
 				INFOPLIST_FILE = PresentationController/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cxy.PresentationController;
