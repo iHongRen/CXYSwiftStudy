@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<playground version='6.0' target-platform='ios' display-mode='rendered'>
+<playground version='6.0' target-platform='ios' display-mode='raw'>
     <pages>
         <page name='1-数据类型'/>
         <page name='2-数组(Array)和字典(Dictionary)'/>
@@ -25,5 +25,6 @@
         <page name='22-Reduce'/>
         <page name='23-模式(Patterns)'/>
         <page name='24-继承(Inheritance)'/>
+        <page name='25-访问控制'/>
     </pages>
 </playground>

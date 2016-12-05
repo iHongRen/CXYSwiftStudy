@@ -1,4 +1,4 @@
-//: 模式(Patterns)
+//: # 模式(Patterns)
 //模式(pattern)代表了单个值或者复合值的结构。
 
 import Foundation

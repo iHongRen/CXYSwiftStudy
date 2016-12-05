@@ -1,3 +1,4 @@
+//: # reduce
 //: reduce方法把数组元素组合计算为一个值。
 
 import UIKit

@@ -1,3 +1,5 @@
+//: [Previous](@previous)
+
 //: ## 泛型(Generics)
 
 import UIKit
