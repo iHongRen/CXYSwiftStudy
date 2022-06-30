@@ -9,8 +9,7 @@ import UIKit
 var opt1: Optional<Int> //显式声明
 var opt2: Int?          //与opt1 等价, 语法糖
 
-var opt3: ImplicitlyUnwrappedOptional<Int> //隐式声明,自动解包
-var opt4: Int!        //与opt3 等价
+var opt3: Int!        //隐式声明,自动解包
 
 //Swift中 nil不是空指针，是一个确定的值，表示值缺失
 

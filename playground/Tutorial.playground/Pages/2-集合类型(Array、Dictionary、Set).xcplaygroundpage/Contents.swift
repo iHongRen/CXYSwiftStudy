@@ -5,14 +5,18 @@ import Foundation
 //空数组
 var eArr = [Int]()
 var eArr1 = Array<Int>()
+var eArr2: [Int] = []
 
 
 //赋值
 var array = Array(1...5)
 eArr = []
 eArr = [1,2,3,4]
-eArr.append(5)
 eArr += [6,7]
+
+eArr.append(5)
+eArr.insert(8, at: 0)
+let ret = eArr.remove(at: 2)
 
 //访问
 let e = eArr[1]
@@ -21,7 +25,10 @@ let e = eArr[1]
 //NSArray
 let cArr: NSArray = [1,2,2,4]
 var dArr: NSMutableArray = [1,3,3,5]
+
 dArr.add(6)
+dArr.insert(8, at: 0)
+dArr.remove(3)
 
 
 //判空
@@ -65,7 +72,7 @@ arr.map {
 let nsArr: NSArray = ["a","b","c","d"]
 
 var str = ""
-for (index,value) in nsArr.enumerated() {
+for (_,value) in nsArr.enumerated() {
     let v = value as! String
     str += v
     if v == "c" {
@@ -115,14 +122,14 @@ for index in 3..<arr.count {
 
 
 
-for (index, value) in arr[3..<arr.count].enumerated() {
+for (_, _) in arr[3..<arr.count].enumerated() {
     
 }
 
 
 
 let range1 = 3..<arr.count
-for (index, value) in zip(range1, arr[range1]) {
+for (_, _) in zip(range1, arr[range1]) {
     
 }
 
@@ -136,13 +143,13 @@ zip(range2, arr[range2]).forEach {
 
 
 
-let results = arr[range2].map{
+let results: [()] = arr[range2].map{
     print("\($0)")
 }
 
 
 
-for value in arr.dropFirst(3) {
+for _ in arr.dropFirst(3) {
     
 }
 
@@ -160,9 +167,10 @@ array.removeAll()
 //空字典
 var dict = [String : Int]()
 var dict1 = Dictionary<String,Int>()
+var dict2: [String: Int] = [:]
 
 //赋值
-dict = ["age" : 25]
+dict = ["age" : 25, "num": 123]
 dict = [:] //赋值为空字典
 dict["num"] = 1234
 
@@ -222,11 +230,81 @@ for value in dict.values {
 
 
 //删除
+dict["id"] = nil
 dict.removeValue(forKey: "code")
 dict.removeAll()
 
 
 
+//: 集合(Set)
+
+//元素类型必须遵循 Hashable 协议
+
+//1.空集合，没有简化形式
+var aSet = Set<Int>()
 
 
+//2.用数组字面量创建集合
+var favoriteGenres: Set<String> = ["Rock", "Classical", "Hip hop"]
 
+//3.方法
+if favoriteGenres.isEmpty {
+    print("空集合")
+} else {
+    print("不是空集合")
+}
+
+if favoriteGenres.contains("Rock") {
+    print("包含Rock")
+} else {
+    print("不包含Rock")
+}
+
+favoriteGenres.insert("cxy")
+favoriteGenres.remove("Rock")
+
+//4.遍历
+for item in favoriteGenres {
+    print(item)
+}
+
+// Set类型是无序的，可以使用 sorted() 方法，返回有序数组后遍历
+for item in favoriteGenres.sorted() {
+    print(item)
+}
+
+//5.操作
+let ASet: Set = [1,2,3,4,5]
+let BSet: Set = [3,4,5,6,7]
+
+//交集
+ASet.intersection(BSet)
+
+//并集
+ASet.union(BSet)
+
+//对称差集
+ASet.symmetricDifference(BSet)
+
+//A差B
+ASet.subtracting(BSet)
+
+
+//6.关系
+//相等
+ASet == BSet
+
+//子集
+ASet.isSubset(of: BSet)
+
+//严格的子集，子集且A不等于B
+ASet.isStrictSubset(of: BSet)
+
+//超集
+ASet.isSuperset(of: BSet)
+
+//严格的超集，超集且A不等于B
+ASet.isStrictSuperset(of: BSet)
+
+//是否没有交集
+ASet.isDisjoint(with: BSet)
