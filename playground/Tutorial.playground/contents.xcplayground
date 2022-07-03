@@ -26,5 +26,6 @@
         <page name='23-模式(Patterns)'/>
         <page name='24-继承(Inheritance)'/>
         <page name='25-访问控制'/>
+        <page name='2-字符串与字符'/>
     </pages>
 </playground>
