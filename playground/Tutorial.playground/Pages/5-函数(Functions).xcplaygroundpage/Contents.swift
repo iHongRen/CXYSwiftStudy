@@ -44,7 +44,7 @@ func getSum(myNum: Int = 1, numbers :Int...) -> Int {
     return sum
 }
 getSum(numbers: 10,20,30,40)
-getSum(2,numbers: 10,20,30,40)
+getSum(myNum: 2,numbers: 10,20,30,40)
 
 //如果函数有一个或多个带默认值的参数,而且还有一个可变参数,那么把可变参数放在参数表的最后。
 
@@ -69,7 +69,8 @@ func swapTwoInts( a: inout Int, _ b: inout Int) {
 }
 var someInt = 3
 var anotherInt = 107
-swapTwoInts(a:&someInt, &anotherInt)
+swapTwoInts(a:&someInt, &anotherInt) //在参数名前加 & 符，表示这个值可以被函数修改。
+
 //someInt = 107,  anotherInt = 3
 
 //你只能将变量作为输入输出参数。你不能传入常量或者字面量(literal value),因为这些量是不能被修改的。当传入的参数作为输入输出参数时,需要在参数前加 & 符,表示这个值可以被函数修改。

@@ -18,7 +18,7 @@ extension Double {
     var km: Double { return self * 1_000.0 }
     var m: Double { return self }
     var cm: Double { return self / 100.0 }
-    var mm: Double { return self / 1_1000 }
+    var mm: Double { return self / 1_000.0 }
     var ft: Double { return self / 3.28084 }
 }
 
@@ -117,7 +117,7 @@ extension Int {
 
 
 //: 嵌套类型(Nested Types)
-//1.该例子向 Int 添加了新的嵌套枚举。这个名为 Kind 的枚举表示特定整数的类型。具体来说,就是表示整数是正 数,零或者负数。
+//1.该例子向 Int 添加了新的嵌套枚举。这个名为 Kind 的枚举表示特定整数的类型。具体来说,就是表示整数是正数,零或者负数。
 extension Int {
     enum Kind {
         case Negative, Zero, Positive

@@ -4,7 +4,7 @@ import Foundation
 
 
 //:  定义一个基类(Defining a Base Class)
-//Swift 中的类并不是从一个通用的基类继承而来。如果你不为你定义的类指定一个超类的话，这个类就自动成为 基类。
+//Swift 中的类并不是从一个通用的基类继承而来。如果你不为你定义的类指定一个超类的话，这个类就自动成为基类。
 class Vehicle {
     var currentSpeed = 0.0
     var description: String {
@@ -41,7 +41,7 @@ print("Tandem: \(tandem.description)")
 
 //: 重写(Overriding)
 //子类可以为继承来的实例方法(instance method)，类方法(class method)，实例属性(instance propert y)，或下标(subscript)提供自己定制的实现(implementation)。重写定义的前面加上 overriding 关键字
-//overriding 关键字会提醒 Swift 编译器去检查该类的超类(或其中一个父类)是否有匹配重写版本的声明。这个 检查可以确保你的重写定义是正确的。
+//overriding 关键字会提醒 Swift 编译器去检查该类的超类(或其中一个父类)是否有匹配重写版本的声明。这个检查可以确保你的重写定义是正确的。
 
 //: 访问超类的方法，属性及下标
 /*
@@ -91,7 +91,7 @@ print("AutomaticCar: \(automatic.description)")
 
 
 //: 防止重写
-//把方法，属性或下标标记为 final 来防止它们被重写，只需要在声明关键字前加上   修饰符即可(例如: final var，final func ，final class func ，以及 final subscript)。
+//把方法，属性或下标标记为 final 来防止它们被重写，只需要在声明关键字前加上修饰符即可(例如: final var，final func ，final class func ，以及 final subscript)。
 //通过在关键字 class 前添加 final 修饰符(final class)来将整个类标记为 final 的。
 
 

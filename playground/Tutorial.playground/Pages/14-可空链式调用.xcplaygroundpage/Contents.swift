@@ -157,7 +157,7 @@ if let johnsStreet = john1.residence?.address?.street {
 //john1.residence 包含 Residence 实例,但是 john1.residence.address 为 nil 。因此,不能访问 john1.residence?.address?.street 。
 
 
-//如果把 john.residence.address 指向一个实例,并且为 address 中的 street 属性赋值,我们就能过通过可空链 式调用来访问 street 属性。
+//如果把 john.residence.address 指向一个实例,并且为 address 中的 street 属性赋值,我们就能过通过可空链式调用来访问 street 属性。
 let johnsAddress = Address()
 johnsAddress.buildingName = "The Larches"
 johnsAddress.street = "Laurel Street"
@@ -171,7 +171,7 @@ if let johnsStreet = john1.residence?.address?.street {
 
 
 
-//5.在下面的例子中,通过可空链式调用来调用 Address 的 buildingIdentifier() 方法。这个方法返回 String? 类 型。正如上面所说,通过可空链式调用的方法的最终返回值还是 String? :
+//5.在下面的例子中,通过可空链式调用来调用 Address 的 buildingIdentifier() 方法。这个方法返回 String? 类型。正如上面所说,通过可空链式调用的方法的最终返回值还是 String? :
 if let buildingIdentifier = john1.residence?.address?.buildingIdentifier() {
     print("John's building identifier is \(buildingIdentifier).")
 }
@@ -186,6 +186,6 @@ if let beginsWithThe = john1.residence?.address?.buildingIdentifier()?.hasPrefix
 }
 
 
-//注意: 在上面的例子中在,在方法的圆括号后面加上问号是因为 buildingIdentifier() 的返回值是可空值,而不 是方法本身是可空的。
+//注意: 在上面的例子中在,在方法的圆括号后面加上问号是因为 buildingIdentifier() 的返回值是可空值,而不是方法本身是可空的。
 
 

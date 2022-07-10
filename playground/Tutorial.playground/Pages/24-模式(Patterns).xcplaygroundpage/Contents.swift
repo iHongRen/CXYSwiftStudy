@@ -38,6 +38,7 @@ let someValue = 42    //someValue 是一个标识符模式
 
 switch 5 {
 case 5: print("5")
+default: break
 }
 
 
@@ -53,6 +54,8 @@ case let (x, y): print("\(x) \(y)")
 //元组模式匹配相应元组类型的值。
 let points = [(0, 0), (1, 0), (1, 1)]
 for (x, y) in points {
+    print(x)
+    print(y)
     /* ... */
 }
 

@@ -93,7 +93,7 @@ class SomeClass: SomeInitProtocol {
     }
 }
 
-// 使用 required 修饰符可以保证:所有的遵循该协议的子类,同样能为构造器规定提供一个显式的实现或继承实 现。
+// 使用 required 修饰符可以保证:所有的遵循该协议的子类,同样能为构造器规定提供一个显式的实现或继承实现。
 
 //2. 如果一个子类重写了父类的指定构造器,并且该构造器遵循了某个协议的规定,那么该构造器的实现需要被同时标示 required 和 override 修饰符
 protocol SomeSubProtocol {
@@ -125,7 +125,8 @@ class Dice {
     let generator: RandomNumberGenerator
     init(sides: Int, generator: RandomNumberGenerator) {
         self.sides = sides
-        self.generator = generator }
+        self.generator = generator
+    }
     func roll() -> Int {
         return Int(generator.random() * Double(sides)) + 1
     }
@@ -310,16 +311,16 @@ extension SnakesAndLadders: PrettyTextRepresentable {
 
 // :类专属协议
 
-//1. 通过添加 class 关键字,限制协议只能适配到类(class)类型。(结构体或枚举不能 遵循该协议)
-protocol SomeClassOnlyProtocol: class, InheritingProtocol {
+//1. 通过添加 AnyObject 关键字,限制协议只能适配到类(class)类型。(结构体或枚举不能 遵循该协议)
+protocol SomeClassOnlyProtocol: AnyObject, InheritingProtocol {
     // class-only protocol definition goes here
 }
 
 
 
-//: 协议合成
-
-//有时候需要同时遵循多个协议。你可以将多个协议采用 protocol<SomeProtocol, AnotherProtocol> 这样的格 式进行组合,称为 协议合成(protocol composition)
+//: 协议组合
+// 有时需要同时遵循多个协议，可以使用协议组合来复合多个协议
+// 协议组合使用 SomeProtocol & AnotherProtocol的形式
 
 //1. 将 Named 和 Aged 两个协议按照上述的语法组合成一个协议
 protocol Named {

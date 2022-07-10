@@ -1,5 +1,3 @@
-//: [Previous](@previous)
-
 //: ## 泛型(Generics)
 
 import UIKit
@@ -13,14 +11,14 @@ func swapTwoInts(_ a: inout Int,  _ b: inout Int) {
 }
 
 
-//swapTwoInts(_:_:) 函数可以交换 b 的原始值到 a ,也可以交换a的原始值到 b ,你可以调用这个函数交换两 个 Int 变量值
+//swapTwoInts(_:_:) 函数可以交换 b 的原始值到 a ,也可以交换a的原始值到 b ,你可以调用这个函数交换两个 Int 变量值
 var someInt = 3
 var anotherInt = 107
 swapTwoInts(&someInt, &anotherInt)
 print("someInt is now \(someInt), and anotherInt is now \(anotherInt)")
 
 
-//swapTwoInts(_:_:) 函数是非常有用的,但是它只能交换 Int 值,如果你想要交换两个 String 或者 Doubl e ,就不得不写更多的函数,如 swapTwoStrings 和 swapTwoDoubles(_:_:) ,如同如下所示:
+//swapTwoInts(_:_:) 函数是非常有用的,但是它只能交换 Int 值,如果你想要交换两个 String 或者 Double ,就不得不写更多的函数,如 swapTwoStrings 和 swapTwoDoubles(_:_:) ,如同如下所示:
 func swapTwoStrings(_ a: inout String, _ b: inout String) {
     let temporaryA = a
     a = b
@@ -34,7 +32,7 @@ func swapTwoDoubles( a: inout Double, _ b: inout Double) {
 
 /*
 
-你可能注意到 swapTwoInts 、 swapTwoStrings 和 swapTwoDoubles(_:_:) 函数功能都是相同的,唯一不同
+你可能注意到 swapTwoInts、swapTwoStrings 和 swapTwoDoubles(_:_:) 函数功能都是相同的,唯一不同
 之处就在于传入的变量类型不同,分别是 Int 、 String 和 Double 。 但实际应用中通常需要一个用处更强大并且尽可能的考虑到更多的灵活性单个函数,可以用来交换两个任何类型
 值,很幸运的是,泛型代码帮你解决了这种问题。(一个这种泛型函数后面已经定义好了。)
 
@@ -50,7 +48,7 @@ func swapTwoValues<T>(_ a: inout T, _ b: inout T) {
     b = temporaryA
 }
 
-//这个函数的泛型版本使用了占位类型名字(通常此情况下用字母 T 来表示)来代替实际类型名(如 ￼ 、或 ￼ )。占位类型名没有提示 必须是什么类型,但是它提示了 a 和 ￼ b 必须是同一类型 ￼T ,而不管表示什么类型。只有 swapTwoValues(_:,_:) 函数在每次调用时所传入的实际类型才能决定 ￼T 所代表的类型。
+//这个函数的泛型版本使用了占位类型名字(通常此情况下用字母 T 来表示)来代替实际类型名(例如 Int、String 或 Double)。占位类型名没有提示必须是什么类型,但是它提示了 a 和 ￼ b 必须是同一类型 ￼T ,而不管表示什么类型。只有 swapTwoValues(_:,_:) 函数在每次调用时所传入的实际类型才能决定 ￼T 所代表的类型。
 
 
 
@@ -77,7 +75,7 @@ struct Stack<T> {
     }
 }
 
-//比如,要创建一个 string s 的栈,你可以写成 Stack<String>() :
+//比如,要创建一个 String 类型的栈,你可以写成 Stack<String>() :
 var stackOfStrings = Stack<String>()
 stackOfStrings.push("uno")
 stackOfStrings.push("dos")
@@ -92,7 +90,7 @@ let fromTheTop = stackOfStrings.pop()
 
 
 //: 扩展一个泛型类型
-//4.下面的例子扩展了泛型 Stack 类型,为其添加了一个名为 topItem 的只读计算属性,它将会返回当前栈顶端的元 素而不会将其从栈中移除。
+//4.下面的例子扩展了泛型 Stack 类型,为其添加了一个名为 topItem 的只读计算属性,它将会返回当前栈顶端的元素而不会将其从栈中移除。
 extension Stack {
     var topItem: T? {
         return items.isEmpty ? nil : items[items.count - 1]
@@ -120,7 +118,7 @@ func someFunction<T: SomeClass, U: SomeProtocol>(someT: T, someU: U) {
     // 这里是函数主体
 }
 
-//上面这个假定函数有两个类型参数。第一个类型参数 T ,有一个需要 T 必须是 SomeClass 子类的类型约 束;第二个类型参数 U ,有一个需要 U 必须遵循 SomeProtocol 协议的类型约束。
+//上面这个函数有两个类型参数。第一个类型参数 T 必须是 SomeClass 子类；第二个类型参数 U 必须符合 SomeProtocol 协议。
 
 
 //: 类型约束行为
@@ -182,7 +180,10 @@ protocol Container {
     var count: Int { get }
     subscript(i: Int) -> ItemType { get }
 }
-//￼Container 协议需要指定任何通过 append(_:)￼ 方法添加到容器里的值和容器里元素是相同类型,并且通过 容器下标返回的容器元素类型的值的类型是相同类型,为了达到此目的, Container 协议声明了一个 ItemType 的关联类型,写作 typealias ItemType 。
+//Container 协议定义了三个任何遵循该协议的类型（即容器）必须提供的功能：
+//• 必须可以通过 append(_:) 方法添加一个新元素到容器里。
+//• 必须可以通过 count 属性获取容器中元素的数量，并返回一个 Int 值。
+//• 必须可以通过索引值类型为 Int 的下标检索到容器中的每一个元素。
 
 
 //这里是一个早前 IntStack 类型的非泛型版本,遵循 Container 协议:

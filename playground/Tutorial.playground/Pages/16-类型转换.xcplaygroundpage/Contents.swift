@@ -130,6 +130,6 @@ for thing in things {
     }
 }
 
-//在一个switch语句的case中使用强制形式的类型转换操作符(as, 而不是 as?)来检查和转换到一个明确的类 型。在 switch case 语句的内容中这种检查总是安全的。
+//在一个switch语句的case中使用强制形式的类型转换操作符(as, 而不是 as?)来检查和转换到一个明确的类型。在 switch case 语句的内容中这种检查总是安全的。
 
 

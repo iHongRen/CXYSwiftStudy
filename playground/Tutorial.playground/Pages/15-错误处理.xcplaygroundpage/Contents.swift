@@ -45,7 +45,7 @@ func vend(itemNamed name: String) throws {
 }
 
 
-//当调用一个抛出函数的时候,在调用前面加上 try 。这个关键字表明函数可以抛出错误,而且在 try 后面代码将 不会执行。
+//当调用一个抛出函数的时候,在调用前面加上 try 。这个关键字表明函数可以抛出错误,而且在 try 后面代码将不会执行。
 let favoriteSnacks = [
     "Alice": "Chips",
     "Bob": "Licorice",

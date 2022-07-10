@@ -1,5 +1,5 @@
 //: # 自动引用计数
-//: 引用计数仅仅应用于类的实例。结构体和枚举类型是值类型,不是引用类型,也不是通过引用的方式存储和传 递。
+//: 引用计数仅仅应用于类的实例。结构体和枚举类型是值类型,不是引用类型,也不是通过引用的方式存储和传递。
 import UIKit
 
 //: 类实例之间的循环强引用
@@ -37,7 +37,7 @@ unit4A = Apartment(number: "4A")
 //在两个实例被创建和赋值后,下图表现了强引用的关系。变量 john 现在有一个指向 Person 实例的强引用,而 变量 unit4A 有一个指向 Apartment 实例的强引用:
 // //: ![image](1.png)
 // var image = UIImage(named: "1")
-#imageLiteral(resourceName: "1.png").withRenderingMode(.automatic)
+#imageLiteral(resourceName: "5.png").withRenderingMode(.automatic)
 
 //现在你能够将这两个实例关联在一起,这样人就能有公寓住了,而公寓也有了房客。注意感叹号是用来展开和访问可选变量 john 和 unit4A 中的实例,这样实例的属性才能被赋值:
 john!.apartment = unit4A
@@ -105,7 +105,7 @@ unit4A1!.tenant = john1
 // image = UIImage(named: "4")
 #imageLiteral(resourceName: "4.png").withRenderingMode(.automatic)
 
-//Person1 实例依然保持对 Apartment1 实例的强引用,但是 Apartment1 实例只是对 Person1 实例的弱引用。这意 味着当你断开 john1 变量所保持的强引用时,再也没有指向 Person1 实例的强引用了:
+//Person1 实例依然保持对 Apartment1 实例的强引用,但是 Apartment1 实例只是对 Person1 实例的弱引用。这意味着当你断开 john1 变量所保持的强引用时,再也没有指向 Person1 实例的强引用了:
 // //: ![image](5.png)
 // image = UIImage(named: "5")
 #imageLiteral(resourceName: "5.png").withRenderingMode(.automatic)

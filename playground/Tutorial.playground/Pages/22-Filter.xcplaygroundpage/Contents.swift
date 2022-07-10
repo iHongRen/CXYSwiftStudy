@@ -32,7 +32,6 @@ func getFilesByCondition(_ files:[String],f:(String)->Bool)->[String] {
 }
 //不妨来试试 采用closure的尾包形式
 let filteredC = getFilesByCondition(filesNeedToFilter) {
-    
     $0.hasSuffix(".c")//返回["HelloWorld.c", "Main.c"]
 }
 
