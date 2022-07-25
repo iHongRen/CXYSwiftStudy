@@ -51,6 +51,8 @@ class LinearCongruentialGenerator: RandomNumberGenerator {
         return lastRandom / m
     }
 }
+
+
 let generator = LinearCongruentialGenerator()
 print("Here's a random number: \(generator.random())")
 // 输出 : "Here's a random number: 0.37464991998171" print("And another one: \(generator.random())")

@@ -2,30 +2,31 @@
 <playground version='6.0' target-platform='ios' display-mode='raw'>
     <pages>
         <page name='1-数据类型'/>
-        <page name='2-集合类型(Array、Dictionary、Set)'/>
-        <page name='3-可选类型(Optional)'/>
-        <page name='4-函数(Functions)'/>
-        <page name='5-闭包(Closures)'/>
-        <page name='6-枚举(Enumerations)'/>
-        <page name='7-类(Classes)和结构体(Struct)'/>
-        <page name='8-属性(Properties)'/>
-        <page name='9-下标(Subscripts)'/>
-        <page name='10-构造过程(Initialization)'/>
-        <page name='11-析构过程(Deinitialization)'/>
-        <page name='12-自动引用计数'/>
-        <page name='13-可空链式调用'/>
-        <page name='14-错误处理'/>
-        <page name='15-类型转换'/>
-        <page name='16-扩展(Extensions)'/>
-        <page name='17-协议(Protocols)'/>
-        <page name='18-泛型(Generics)'/>
-        <page name='19-高级运算符'/>
-        <page name='20-Map'/>
-        <page name='21-Filter'/>
-        <page name='22-Reduce'/>
-        <page name='23-模式(Patterns)'/>
-        <page name='24-继承(Inheritance)'/>
-        <page name='25-访问控制'/>
         <page name='2-字符串与字符'/>
+        <page name='3-集合类型(Array、Dictionary、Set)'/>
+        <page name='4-可选类型(Optional)'/>
+        <page name='5-函数(Functions)'/>
+        <page name='6-闭包(Closures)'/>
+        <page name='7-枚举(Enumerations)'/>
+        <page name='8-类(Classes)和结构体(Struct)'/>
+        <page name='9-属性(Properties)'/>
+        <page name='10-下标(Subscripts)'/>
+        <page name='11-构造过程(Initialization)'/>
+        <page name='12-析构过程(Deinitialization)'/>
+        <page name='13-自动引用计数'/>
+        <page name='14-可空链式调用'/>
+        <page name='15-错误处理'/>
+        <page name='16-类型转换'/>
+        <page name='17-扩展(Extensions)'/>
+        <page name='18-协议(Protocols)'/>
+        <page name='19-泛型(Generics)'/>
+        <page name='20-高级运算符'/>
+        <page name='21-Map'/>
+        <page name='22-Filter'/>
+        <page name='23-Reduce'/>
+        <page name='24-模式(Patterns)'/>
+        <page name='25-继承(Inheritance)'/>
+        <page name='26-访问控制'/>
+        <page name='27-不透明类型'/>
     </pages>
 </playground>

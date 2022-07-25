@@ -133,3 +133,57 @@ for thing in things {
 //在一个switch语句的case中使用强制形式的类型转换操作符(as, 而不是 as?)来检查和转换到一个明确的类型。在 switch case 语句的内容中这种检查总是安全的。
 
 
+func toInt(_ value: Any?) -> Int {
+    guard let v = value else {
+        return 0
+    }
+    if v is Int { return v as! Int }
+    if let s = v as? String { return Int(s) ?? 0 }
+    if let b = v as? Bool { return b ? 1 : 0 }
+    if let d = v as? Double { return Int(d) }
+    if let f = v as? Float { return Int(f) }
+
+    if let c = v as? Character {
+        var i = 0
+        for scalar in String(c).unicodeScalars {
+            i = Int(scalar.value)
+        }
+        return i
+    }
+    return 0
+}
+
+toInt(1)
+toInt(true)
+toInt(false)
+toInt("123")
+toInt(Character("a"))
+toInt("")
+toInt(1.4)
+toInt(Double(2.22))
+toInt([1,2])
+
+
+func toBool(_ value: Any?) -> Bool {
+    guard let v = value else {
+        return false
+    }
+    if let b = v as? Bool { return b }
+    if let i  = v as? Int { return i != 0 }
+    if let s = v as? String { return !s.isEmpty }
+    if let d = v as? Double { return d != 0 }
+    if let f = v as? Float { return f != 0 }
+    if v is Character { return true }
+
+    return false
+}
+
+toBool(1)
+toBool(0)
+toBool("1")
+toBool("")
+toBool(false)
+toBool(true)
+toBool(0.22)
+toBool(Double(1.11))
+toBool([])
